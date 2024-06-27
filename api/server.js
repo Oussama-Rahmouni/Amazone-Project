@@ -7,12 +7,8 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import multer from 'multer';
 import session from 'express-session';
-import db from './config/db.js';
-import productsRouter from './routes/products.js';
-import cart from './routes/cart.js';
-import orders from './routes/orders.js';
-import users from './routes/users.js';
-import payment from './routes/payment.js';
+import cookieParser from 'cookie-parser'
+
 
 // Load environment variables from .env file
 dotenv.config();
@@ -35,6 +31,7 @@ app.use(cors({
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -46,11 +43,7 @@ app.use(session({
 }));
 
 // Route configurations
-app.use('/api', productsRouter);
-app.use('/api', cart);
-// app.use('/api', orders);
-// app.use('/api', users);
-// app.use('/api', payment);
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {
