@@ -11,7 +11,7 @@ import { dirname } from 'path';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import multer from 'multer';
-// import pool from './config/db.js'
+import pool from './config/db.js'
 // import routes from './routes/routeCenter.js'
 // import handleError from "./utils/handleError.js"
 // import session from 'express-session';
@@ -55,6 +55,16 @@ app.use(bodyParser.json());
 //     saveUninitialized: false,
 //     cookie: { secure: false } // set to true if your website uses HTTPS
 // }));
+
+// Test database connection
+pool.getConnection()
+    .then(connection => {
+        console.log('Connected to database as ID:', connection.threadId);
+        connection.release();
+    })
+    .catch(err => {
+        console.error('Error connecting to database:', err.stack);
+    });
 
 // app.use('/api', routes);
 
