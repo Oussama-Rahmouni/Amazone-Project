@@ -1,12 +1,12 @@
 import express from 'express';
 import { body, param } from 'express-validator';
-import { addItemToCart, getCartItems, updateCartItemQuantity, removeCartItem } from '../controllers/cart.js';
-import authMiddleware from '../middlewares/authMiddleware.js';
+import { addItemToCart, getCartItems, updateCartItemQuantity, removeCartItem } from '../controllers/cart.controllers.js';
+import authenticate from '../middlewares/authenticate.js';
 
 const router = express.Router();
 
 router.post('/',
-    authMiddleware,
+    authenticate,
     [
         body('product_id').isInt({ gt: 0 }).withMessage('Valid product ID is required'),
         body('quantity').isInt({ gt: 0 }).withMessage('Quantity must be greater than zero')
@@ -15,12 +15,12 @@ router.post('/',
 );
 
 router.get('/',
-    authMiddleware,
+    authenticate,
     getCartItems
 );
 
 router.put('/:id',
-    authMiddleware,
+    authenticate,
     [
         param('id').isInt({ gt: 0 }).withMessage('Valid cart item ID is required'),
         body('quantity').isInt({ gt: 0 }).withMessage('Quantity must be greater than zero')
@@ -29,7 +29,7 @@ router.put('/:id',
 );
 
 router.delete('/:id',
-    authMiddleware,
+    authenticate,
     [
         param('id').isInt({ gt: 0 }).withMessage('Valid cart item ID is required')
     ],
