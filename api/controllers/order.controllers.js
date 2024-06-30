@@ -10,14 +10,33 @@ export const createOrder = async (req, res) => {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { product_id, quantity, total_price, status } = req.body;
         const user_id = req.user.id;
+        
+        // Fetch cart items for the user
+        const [cartItems] = await db.execute('SELECT c.product_id, c.quantity, p.price FROM cart_items c JOIN products p ON c.product_id = p.id WHERE c.user_id = ?', 
+            [user_id]);
+        
+        if (cartItems.length === 0) {
+            return res.status(400).json({ message: 'No items in cart' });
+        }
 
-        const query = 'INSERT INTO orders (user_id, product_id, quantity, total_price, status) VALUES (?, ?, ?, ?, ?)';
-        const values = [user_id, product_id, quantity, total_price, status];
+        // Calculate total amount
+        const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-        const [result] = await db.execute(query, values);
-        const [order] = await db.execute('SELECT * FROM orders WHERE id = ?', [result.insertId]);
+        // Insert a new order
+        const [orderResult] = await db.execute('INSERT INTO orders (user_id, total_amount, status, shipping_address, payment_status) VALUES (?, ?, ?, ?, ?)', 
+            [user_id, totalAmount, 'pending', req.body.shipping_address, 'pending']);
+        const orderId = orderResult.insertId;
+
+        // Insert cart items into order_items
+        const orderItems = cartItems.map(item => [orderId, item.product_id, item.quantity, item.price]);
+        await db.query('INSERT INTO order_items (order_id, product_id, quantity, price) VALUES ?', [orderItems]);
+
+        // Clear the cart
+        await db.execute('DELETE FROM cart_items WHERE user_id = ?', [user_id]);
+
+        // Fetch the created order
+        const [order] = await db.execute('SELECT * FROM orders WHERE id = ?', [orderId]);
 
         res.status(201).json(order[0]);
     } catch (error) {

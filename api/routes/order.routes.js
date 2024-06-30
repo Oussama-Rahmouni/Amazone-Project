@@ -1,31 +1,28 @@
 import express from 'express';
 import { body, param } from 'express-validator';
-import { createOrder, getAllOrdersForUser, getOrderById, updateOrder, deleteOrder } from '../controllers/order.js';
-import authMiddleware from '../middlewares/authMiddleware.js';
+import { createOrder, getAllOrdersForUser, getOrderById, updateOrder, deleteOrder } from '../controllers/order.controllers.js';
+import authenticate from '../middlewares/authenticate.js';
 
 const router = express.Router();
 
 // Create an order
 router.post('/',
-    authMiddleware,
+    authenticate,
     [
-        body('product_id').isInt({ gt: 0 }).withMessage('Valid product ID is required'),
-        body('quantity').isInt({ gt: 0 }).withMessage('Quantity must be a positive integer'),
-        body('total_price').isFloat({ gt: 0 }).withMessage('Total price must be a positive number'),
-        body('status').notEmpty().withMessage('Status is required')
+        body('shipping_address').notEmpty().withMessage('Shipping address is required')
     ],
     createOrder
 );
 
 // Get all orders for a user
 router.get('/',
-    authMiddleware,
+    authenticate,
     getAllOrdersForUser
 );
 
 // Get a single order by ID
 router.get('/:id',
-    authMiddleware,
+    authenticate,
     [
         param('id').isInt({ gt: 0 }).withMessage('Valid order ID is required')
     ],
@@ -34,7 +31,7 @@ router.get('/:id',
 
 // Update an order
 router.put('/:id',
-    authMiddleware,
+    authenticate,
     [
         param('id').isInt({ gt: 0 }).withMessage('Valid order ID is required'),
         body('quantity').optional().isInt({ gt: 0 }).withMessage('Quantity must be a positive integer'),
@@ -46,7 +43,7 @@ router.put('/:id',
 
 // Delete an order
 router.delete('/:id',
-    authMiddleware,
+    authenticate,
     [
         param('id').isInt({ gt: 0 }).withMessage('Valid order ID is required')
     ],
