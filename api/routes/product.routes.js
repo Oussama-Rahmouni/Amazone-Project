@@ -26,7 +26,7 @@ router.post('/',
 router.get('/', getAllProducts);
 router.get('/:id', getProductById);
 
-router.put(authenticate,
+router.put("/:id",authenticate,
     authorize(adminRole),
     [
         body('name').not().isEmpty().withMessage('Product name is required'),

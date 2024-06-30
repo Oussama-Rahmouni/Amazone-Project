@@ -62,7 +62,7 @@ export const updateProduct = async (req, res) => {
         const { id } = req.params;
         const { name, description, price, category, stock, image } = req.body;
 
-        const query = 'UPDATE products SET name = ?, description = ?, price = ?, category = ?, stock = ?, image = ? WHERE id = ?';
+        const query = 'UPDATE products SET name = ?, description = ?, price = ?, category_id = ?, stock = ?, image_url = ? WHERE id = ?';
         const values = [name, description, price, category, stock, image, id];
 
         const [result] = await db.execute(query, values);
