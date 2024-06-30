@@ -1,18 +1,18 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import db from '../config/db.js'; // Assuming you have a db configuration file for database connection
+import db from '../config/db.js'; 
 import handleError from '../utils/handleError.js';
-import { validationResult } from 'express-validator'; // For input validation
+import { validationResult } from 'express-validator'; 
 import crypto from 'crypto';
 
 // Utility function to create a token
 const createToken = (user) => {
-    return jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, {
+    return jwt.sign({ id: user.id, email: user.email, role: user.role }, process.env.JWT_SECRET, {
         expiresIn: '1h',
     });
 };
 
-// Register a new user
+// Register user
 export const register = async (req, res) => {
     try {
         const errors = validationResult(req);
@@ -20,13 +20,23 @@ export const register = async (req, res) => {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { username, email, password } = req.body;
+        const {  email, password, first_name, last_name, phone_number, address, city, state, country, zip_code } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const query = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
-        const values = [username, email, hashedPassword];
+        const query = 'INSERT INTO users ( email, password, first_name, last_name, phone_number, address, city, state, country, zip_code) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        const values = [ email, hashedPassword, first_name, last_name, phone_number, address, city, state, country, zip_code];
 
-        await db.execute(query, values);
+        const [result] = await db.execute(query, values);
+
+        const user = {
+            id: result.insertId,
+            email :email,
+            role : 'client'
+        };
+
+        const token = createToken(user);
+
+        res.cookie('token', token, { httpOnly: true });
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
