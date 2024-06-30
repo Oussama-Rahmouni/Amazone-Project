@@ -1,8 +1,8 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } from '../controllers/product.js';
-import authMiddleware from '../middlewares/authMiddleware.js';
-import authorizeMiddleware from '../middlewares/authorizeMiddleware.js';
+import { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } from '../controllers/product.controllers.js';
+import authenticate from '../middlewares/authenticate.js'
+import authorize from '../middlewares/authorize.js'
 
 const router = express.Router();
 
@@ -10,8 +10,8 @@ const router = express.Router();
 const adminRole = ['admin'];
 
 router.post('/',
-    authMiddleware,
-    authorizeMiddleware(adminRole),
+    authenticate,
+    authorize(adminRole),
     [
         body('name').not().isEmpty().withMessage('Product name is required'),
         body('description').not().isEmpty().withMessage('Product description is required'),
@@ -26,9 +26,8 @@ router.post('/',
 router.get('/', getAllProducts);
 router.get('/:id', getProductById);
 
-router.put('/:id',
-    authMiddleware,
-    authorizeMiddleware(adminRole),
+router.put(authenticate,
+    authorize(adminRole),
     [
         body('name').not().isEmpty().withMessage('Product name is required'),
         body('description').not().isEmpty().withMessage('Product description is required'),
@@ -41,8 +40,8 @@ router.put('/:id',
 );
 
 router.delete('/:id',
-    authMiddleware,
-    authorizeMiddleware(adminRole),
+    authenticate,
+    authorize(adminRole),
     deleteProduct
 );
 

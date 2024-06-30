@@ -12,7 +12,7 @@ export const createProduct = async (req, res) => {
 
         const { name, description, price, category, stock, image } = req.body;
 
-        const query = 'INSERT INTO products (name, description, price, category, stock, image) VALUES (?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO products (name, description, price, category_id, stock, image_url) VALUES (?, ?, ?, ?, ?, ?)';
         const values = [name, description, price, category, stock, image];
 
         await db.execute(query, values);
