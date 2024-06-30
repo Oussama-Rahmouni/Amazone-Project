@@ -5,7 +5,7 @@ import { validationResult } from 'express-validator';
 // Get all users
 export const getAllUsers = async (req, res) => {
     try {
-        const [rows] = await db.execute('SELECT id, name, email, role, created_at FROM users');
+        const [rows] = await db.execute('SELECT id, email, role, created_at FROM users');
         res.status(200).json(rows);
     } catch (error) {
         handleError(error, req, res);
@@ -16,7 +16,7 @@ export const getAllUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
     try {
         const { id } = req.params;
-        const [rows] = await db.execute('SELECT id, name, email, role, created_at FROM users WHERE id = ?', [id]);
+        const [rows] = await db.execute('SELECT id, email, role, created_at FROM users WHERE id = ?', [id]);
 
         if (rows.length === 0) {
             return res.status(404).json({ message: 'User not found' });
@@ -108,4 +108,18 @@ export const updateOrderStatus = async (req, res) => {
 };
 
 // Delete an order
-export const deleteOrder = async (req, re
+export const deleteOrder = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const [result] = await db.execute('DELETE FROM orders WHERE id = ?', [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+
+        res.status(200).json({ message: 'Order deleted successfully' });
+    } catch (error) {
+        handleError(error, req, res);
+    }
+};
