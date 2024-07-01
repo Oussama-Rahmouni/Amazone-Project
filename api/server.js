@@ -39,9 +39,9 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
-app.use(morgan('dev')); // Logger for development
-app.use(helmet()); // Security headers
-app.use(compression()); // Compress response bodies
+app.use(morgan('dev')); 
+app.use(helmet()); 
+app.use(compression()); 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser())
 app.use(express.json());
@@ -51,11 +51,11 @@ app.use(bodyParser.json());
 // Test database connection
 pool.getConnection()
     .then(connection => {
-        console.log('Connected to database as ID:', connection.threadId);
+        console.log('Connected to database');
         connection.release();
     })
     .catch(err => {
-        console.error('Error connecting to database:', err.stack);
+        console.error('Error connecting to database:');
     });
 
 app.use('/api', router);
