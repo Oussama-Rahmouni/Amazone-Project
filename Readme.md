@@ -117,3 +117,76 @@ Include instructions on how to use the project once it's set up.
 - **Security**: The application uses secure methods for user authentication and payment processing.
 - **Scalability**: Built with modern web technologies, the project is designed to be scalable and maintainable.
 - **User Experience**: Focused on providing a seamless user experience with easy navigation and quick access to features.
+
+
+/amazon_clone_project
+|-- /config
+|   |-- db.js                # Database connection setup
+|-- /controllers
+|   |-- auth.controllers.js  # Authentication-related functions
+|   |-- client.controllers.js # Client-facing functionalities (products, categories)
+|   |-- order.controllers.js  # Order management functions
+|   |-- user.controllers.js   # User management functions
+|-- /db
+|   |-- setup.sql            # SQL queries to create and manage database tables
+|-- /middlewares
+|   |-- authenticate.js      # Middleware to handle authentication
+|   |-- authorize.js         # Middleware to handle authorization
+|-- /models
+|   |-- (Optional models if using ORM)
+|-- /routes
+|   |-- auth.routes.js       # Routes for authentication (login, register)
+|   |-- client.routes.js     # Routes for client operations (products, categories)
+|   |-- order.routes.js      # Routes for order operations
+|   |-- user.routes.js       # Routes for user management
+|   |-- routesCenter.js      # Central file to manage and link all routes
+|-- /utils
+|   |-- handleError.js       # Utility to handle errors globally
+|   |-- sendEmail.js         # Utility for sending emails
+|-- .env                     # Environment variables
+|-- .gitignore               # Specifies intentionally untracked files to ignore
+|-- app.js                   # Main application file to setup middleware and routes
+|-- Dockerfile               # Dockerfile for containerizing the application
+|-- docker-compose.yml       # Docker compose file to setup the application stack
+|-- package.json             # NPM dependencies and scripts
+|-- README.md                # Project documentation
+
+
+
+/src
+|-- /assets
+|   |-- /images         # Store static images like logos, icons, etc.
+|   |-- /styles         # Global styles and themes
+|-- /components
+|   |-- /layout
+|   |   |-- Navbar.js   # Navigation bar component
+|   |   |-- Footer.js   # Footer component
+|-- /hooks
+|   |-- useAuth.js      # Custom hook for authentication logic
+|   |-- useFetch.js     # Custom hook for fetching data
+|-- /pages
+|   |-- Home.js         # Homepage
+|   |-- Login.js        # Login page
+|   |-- Register.js     # Registration page
+|   |-- Profile.js      # User profile page
+|   |-- Products.js     # Page to display products
+|   |-- ProductDetail.js# Product details page
+|   |-- Cart.js         # Shopping cart page
+|   |-- Checkout.js     # Checkout page
+|   |-- OrderSummary.js # Order summary page
+|-- /redux
+|   |-- /store.js       # Redux store configuration
+|   |-- /slices
+|   |   |-- userSlice.js# User-related state management
+|   |   |-- cartSlice.js# Cart state management
+|-- /services
+|   |-- apiConfig.js    # Axios instance and API configuration
+|   |-- authService.js  # Authentication related API calls
+|   |-- productService.js # API calls related to products
+|   |-- userService.js  # API calls for user data
+|-- /AppRouter
+|   |-- index.js        # Central file for all routes
+|-- App.js              # Main application component
+|-- main.js             # Entry point for Vite
+|-- index.css           # Main stylesheet
+

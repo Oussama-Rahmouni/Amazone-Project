@@ -1,7 +1,7 @@
 SHOW DATABASES;
 CREATE DABASE amazon_project;
 
-USE amazone_project;
+USE amazon_project;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
