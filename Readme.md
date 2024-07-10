@@ -153,40 +153,55 @@ Include instructions on how to use the project once it's set up.
 
 
 
-/src
-|-- /assets
-|   |-- /images         # Store static images like logos, icons, etc.
-|   |-- /styles         # Global styles and themes
-|-- /components
-|   |-- /layout
-|   |   |-- Navbar.js   # Navigation bar component
-|   |   |-- Footer.js   # Footer component
-|-- /hooks
-|   |-- useAuth.js      # Custom hook for authentication logic
-|   |-- useFetch.js     # Custom hook for fetching data
-|-- /pages
-|   |-- Home.js         # Homepage
-|   |-- Login.js        # Login page
-|   |-- Register.js     # Registration page
-|   |-- Profile.js      # User profile page
-|   |-- Products.js     # Page to display products
-|   |-- ProductDetail.js# Product details page
-|   |-- Cart.js         # Shopping cart page
-|   |-- Checkout.js     # Checkout page
-|   |-- OrderSummary.js # Order summary page
-|-- /redux
-|   |-- /store.js       # Redux store configuration
-|   |-- /slices
-|   |   |-- userSlice.js# User-related state management
-|   |   |-- cartSlice.js# Cart state management
-|-- /services
-|   |-- apiConfig.js    # Axios instance and API configuration
-|   |-- authService.js  # Authentication related API calls
-|   |-- productService.js # API calls related to products
-|   |-- userService.js  # API calls for user data
-|-- /AppRouter
-|   |-- index.js        # Central file for all routes
-|-- App.js              # Main application component
-|-- main.js             # Entry point for Vite
-|-- index.css           # Main stylesheet
+/amazon_clone_frontend
+|-- /src
+    |-- /assets
+    |   |-- /images             # Static images like logos and icons
+    |   |-- /styles             # Global styles and themes, consider using CSS modules or styled-components
+    |-- /components
+    |   |-- /common             # Reusable components like buttons, input fields, etc.
+    |   |-- /layout
+    |       |-- Navbar.js       # Navigation bar component
+    |       |-- Footer.js       # Footer component
+    |-- /hooks
+    |   |-- useAuth.js          # Custom hook for authentication logic
+    |   |-- useFetch.js         # Custom hook to encapsulate fetching logic
+    |-- /pages
+    |   |-- Home.js             # Homepage
+    |   |-- Login.js            # Login page
+    |   |-- Register.js         # Registration page
+    |   |-- Profile.js          # User profile page
+    |   |-- Products.js         # Page displaying all products
+    |   |-- ProductDetail.js    # Individual product detail page
+    |   |-- Cart.js             # Shopping cart page
+    |   |-- Checkout.js         # Checkout page
+    |   |-- OrderSummary.js     # Order summary page
+    |-- /redux
+    |   |-- /store.js           # Setup and configure the Redux store
+    |   |-- /slices             # Redux slices
+    |       |-- userSlice.js    # User state management
+    |       |-- productSlice.js # Product-related state management
+    |-- /services
+    |   |-- api.js              # Setup Axios instance and API methods
+    |   |-- authService.js      # Authentication related API calls
+    |   |-- productService.js   # Product-related API calls
+    |-- /AppRouter
+    |   |-- index.js            # Setup and manage routes
+    |-- App.js                  # Main application component, setup routing and global providers
+    |-- main.js                 # Entry point, render the React app
+    |-- index.css               # Global styles
+|-- .env                        # Environment variables
+|-- package.json                # Project dependencies and scripts
+|-- README.md                   # Project documentation
 
+
+
+Explanation of Each Part
+Assets: Contains images and global styles. Using CSS modules or a CSS-in-JS library can be introduced here for component-level styling.
+Components: Organized into common for reusable UI components and layout for structural components like navigation and footers.
+Hooks: Custom hooks to manage authentication and data fetching, showcasing advanced React patterns.
+Pages: Each page corresponds to a route; this setup helps the student understand the role of each page and its functionality.
+Redux: Manages global state, demonstrating modern state management with Redux Toolkit.
+Services: Abstracts API interaction, a critical aspect of connecting frontend to backend.
+AppRouter: Manages all routes in the application, a crucial part for SPA development.
+s
