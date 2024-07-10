@@ -1,0 +1,7 @@
+/* src/components/CardContainer.css */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Adjusts spacing between cards */
+    padding: 20px;
+}
