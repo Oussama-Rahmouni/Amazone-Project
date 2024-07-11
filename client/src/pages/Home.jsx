@@ -11,7 +11,6 @@ import { cardData } from "./homeData.js";
 import HomeHeader from "../components/common/HomeHeader.jsx";
 import HomeCategories from "../components/common/HomeCategories.jsx";
 import ListCards from "../components/common/ListCards.jsx";
-// import ListCards2 from "../components/common/ListCards2.jsx";
 
 const Home = () => {
   // const {
@@ -71,10 +70,6 @@ const Home = () => {
           />
         ))}
       </div>
-
-      {/* <div className="list-carousel">
-        <ListCards2 />
-      </div> */}
     </div>
   );
 };

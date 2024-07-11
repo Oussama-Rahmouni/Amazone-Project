@@ -28,12 +28,75 @@ const ListCards = () => {
     },
   };
   return (
-    <div className="listCards">
-      <Carousel responsive={responsive}>
-        <div>item1</div>
-      </Carousel>
-      <h1>wh</h1>
-    </div>
+    <Carousel
+      additionalTransfrom={0}
+      arrows
+      autoPlay
+      autoPlaySpeed={3}
+      centerMode={false}
+      className=""
+      containerClass="container-with-dots"
+      customTransition="all 1s linear"
+      dotListClass=""
+      draggable
+      focusOnSelect={false}
+      infinite
+      itemClass=""
+      keyBoardControl
+      minimumTouchDrag={80}
+      pauseOnHover
+      renderArrowsWhenDisabled={false}
+      renderButtonGroupOutside={false}
+      renderDotsOutside={false}
+      responsive={{
+        desktop: {
+          breakpoint: {
+            max: 3000,
+            min: 1024,
+          },
+          items: 3,
+          partialVisibilityGutter: 40,
+        },
+        mobile: {
+          breakpoint: {
+            max: 464,
+            min: 0,
+          },
+          items: 1,
+          partialVisibilityGutter: 30,
+        },
+        tablet: {
+          breakpoint: {
+            max: 1024,
+            min: 464,
+          },
+          items: 2,
+          partialVisibilityGutter: 30,
+        },
+      }}
+      rewind={false}
+      rewindWithAnimation={false}
+      rtl={false}
+      shouldResetAutoplay
+      showDots={false}
+      sliderClass=""
+      slidesToSlide={2}
+      swipeable
+      transitionDuration={4000}
+    >
+      <div className="listCards">
+        <img src={one} alt="" style={{ height: "350px", width: "450px" }} />
+      </div>
+      <div className="listCards">
+        <img src={two} alt="" style={{ height: "350px", width: "450px" }} />
+      </div>
+      <div className="listCards">
+        <img src={three} alt=" " style={{ height: "350px", width: "450px" }} />
+      </div>
+      <div className="listCards">
+        <img src={four} alt="" style={{ height: "350px", width: "450px" }} />
+      </div>
+    </Carousel>
   );
 };
 
