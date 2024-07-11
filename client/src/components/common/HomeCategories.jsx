@@ -1,8 +1,8 @@
 // src/components/Card.js
 import React from "react";
-import "../styles/card.css";
+import "../styles/homeCategories.css";
 
-const Card = ({ title, imageUrl, links, description }) => {
+const HomeCategories = ({ title, imageUrl, links, description }) => {
   return (
     <div className="card">
       <h3>{title}</h3>
@@ -12,4 +12,4 @@ const Card = ({ title, imageUrl, links, description }) => {
   );
 };
 
-export default Card;
+export default HomeCategories;

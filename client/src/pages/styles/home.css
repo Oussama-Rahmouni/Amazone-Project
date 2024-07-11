@@ -1,7 +1,43 @@
-/* src/components/CardContainer.css */
-.card-container {
+.home-page{
+    background-color: rgb(241, 239, 239);
+
+}
+.home-header{
+    position: relative;
+    height: 80vh;
+    margin: 5px;
+}
+
+.categories-container {
+    margin-top: -300px;
+    border: 2px solid rgb(102, 0, 255);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; /* Adjusts spacing between cards */
-    padding: 20px;
+    justify-content: space-around;
+    gap: 8px;
+
+}
+
+.card-container {
+    margin-top: 10px;
+    border: 2px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 8px;
+
+}
+
+.list-container{
+    margin-top: 10px;
+    height: 350px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.list-carousel{
+    margin-top: 10px;
+    height: 350px;
+    width: 100%;
+    border: 1px solid rgb(110, 206, 14);
 }
