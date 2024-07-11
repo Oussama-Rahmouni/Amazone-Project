@@ -41,3 +41,10 @@
     width: 100%;
     border: 1px solid rgb(110, 206, 14);
 }
+
+.list-container2{
+    margin-top: 10px;
+    height: 350px;
+    width: 100%;
+    border: 1px solid rgb(14, 197, 229);
+}

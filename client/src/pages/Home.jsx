@@ -11,6 +11,7 @@ import { cardData } from "./homeData.js";
 import HomeHeader from "../components/common/HomeHeader.jsx";
 import HomeCategories from "../components/common/HomeCategories.jsx";
 import ListCards from "../components/common/ListCards.jsx";
+import ListCard2 from "../components/common/ListCard2.jsx";
 
 const Home = () => {
   // const {
@@ -69,6 +70,10 @@ const Home = () => {
             description={data.description}
           />
         ))}
+      </div>
+
+      <div className="list-container2">
+        <ListCard2 />
       </div>
     </div>
   );

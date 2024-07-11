@@ -7,7 +7,7 @@ import three from "../../assets/images/Amazon_product_design.jpg";
 import four from "../../assets/images/b13d18f1651e2fee857c869f7c4f047a.jpg";
 import "../styles/listCard.css";
 
-const ListCards = () => {
+const ListCard2 = () => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -31,16 +31,14 @@ const ListCards = () => {
     <Carousel
       additionalTransfrom={0}
       arrows
-      autoPlay
-      autoPlaySpeed={3}
+      autoPlaySpeed={3000}
       centerMode={false}
       className=""
-      containerClass="container-with-dots"
-      customTransition="all 1s linear"
+      containerClass="container"
       dotListClass=""
       draggable
       focusOnSelect={false}
-      infinite
+      infinite={false}
       itemClass=""
       keyBoardControl
       minimumTouchDrag={80}
@@ -82,22 +80,45 @@ const ListCards = () => {
       sliderClass=""
       slidesToSlide={2}
       swipeable
-      transitionDuration={4000}
     >
       <div className="listCards">
-        <img src={one} alt="" style={{ height: "330px", width: "450px" }} />
+        <img src={one} alt="" style={{ height: "330px", width: "390px" }} />
       </div>
       <div className="listCards">
-        <img src={two} alt="" style={{ height: "330px", width: "450px" }} />
+        <img src={two} alt="" style={{ height: "330px", width: "390px" }} />
       </div>
       <div className="listCards">
-        <img src={three} alt=" " style={{ height: "330px", width: "450px" }} />
+        <img src={three} alt=" " style={{ height: "330px", width: "390px" }} />
       </div>
       <div className="listCards">
-        <img src={four} alt="" style={{ height: "330px", width: "450px" }} />
+        <img src={four} alt="" style={{ height: "330px", width: "390px" }} />
+      </div>
+      <div className="listCards">
+        <img src={one} alt="" style={{ height: "330px", width: "390px" }} />
+      </div>
+      <div className="listCards">
+        <img src={two} alt="" style={{ height: "330px", width: "390px" }} />
+      </div>
+      <div className="listCards">
+        <img src={three} alt=" " style={{ height: "330px", width: "390px" }} />
+      </div>
+      <div className="listCards">
+        <img src={four} alt="" style={{ height: "330px", width: "390px" }} />
+      </div>
+      <div className="listCards">
+        <img src={one} alt="" style={{ height: "330px", width: "390px" }} />
+      </div>
+      <div className="listCards">
+        <img src={two} alt="" style={{ height: "330px", width: "390px" }} />
+      </div>
+      <div className="listCards">
+        <img src={three} alt=" " style={{ height: "330px", width: "390px" }} />
+      </div>
+      <div className="listCards">
+        <img src={four} alt="" style={{ height: "330px", width: "390px" }} />
       </div>
     </Carousel>
   );
 };
 
-export default ListCards;
+export default ListCard2;
