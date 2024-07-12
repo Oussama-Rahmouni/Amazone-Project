@@ -9,9 +9,13 @@
 
 .sidb{
 }
-
+.card{
+    
+    border : 1px solid blue;
+    width: 100%;
+    height: 50px;
+}
 .maaain{
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     gap: 5px;
