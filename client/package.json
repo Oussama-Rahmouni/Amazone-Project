@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
     "@mui/icons-material": "^5.16.1",
+    "@mui/x-data-grid": "^7.10.0",
     "@reduxjs/toolkit": "^2.2.6",
+    "@table-library/react-table-library": "^4.1.7",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "primereact": "^10.7.0",
@@ -25,6 +28,7 @@
     "react-redux": "^9.1.2",
     "react-router-bootstrap": "^0.26.3",
     "react-router-dom": "^6.24.1",
+    "react-table": "^7.8.0",
     "redux": "^5.0.1",
     "styled-components": "^6.1.11"
   },
