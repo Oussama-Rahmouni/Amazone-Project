@@ -1,6 +1,10 @@
 .home-page{
-    background-color: rgb(241, 239, 239);
+    background-color: #E3E6E6 ;
 
+}
+.tophead{
+    border : 1px solid pink;
+    margin-bottom: 0;
 }
 .home-header{
     position: relative;
@@ -9,7 +13,7 @@
 }
 
 .categories-container {
-    margin-top: -300px;
+    margin-top: -450px;
     border: 2px solid rgb(102, 0, 255);
     display: flex;
     flex-wrap: wrap;

@@ -12,6 +12,8 @@ import HomeHeader from "../components/common/HomeHeader.jsx";
 import HomeCategories from "../components/common/HomeCategories.jsx";
 import ListCards from "../components/common/ListCards.jsx";
 import ListCard2 from "../components/common/ListCard2.jsx";
+import GoUp from "../components/common/GoUp.jsx";
+import TopHeader from "../components/common/TopHeader.jsx";
 
 const Home = () => {
   // const {
@@ -40,6 +42,10 @@ const Home = () => {
 
   return (
     <div className="home-page">
+      <div className="tophead">
+        <TopHeader />
+      </div>
+
       <div className="home-header">
         <HomeHeader />
       </div>
@@ -74,6 +80,10 @@ const Home = () => {
 
       <div className="list-container2">
         <ListCard2 />
+      </div>
+
+      <div>
+        <GoUp />
       </div>
     </div>
   );
