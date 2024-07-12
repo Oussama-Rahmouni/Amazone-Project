@@ -17,8 +17,12 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import DensitySmallIcon from "@mui/icons-material/DensitySmall";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
+import ContrastIcon from "@mui/icons-material/Contrast";
+import { useTheme } from "../../context/ThemeContext";
+
 const DashboardSideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const { darkMode, toggleTheme } = useTheme();
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
@@ -29,20 +33,29 @@ const DashboardSideBar = () => {
       collapsed={collapsed}
       toggled={!collapsed}
       onToggle={toggleSidebar}
+      style={{
+        background: darkMode ? "#00010f" : "#fff",
+        color: darkMode ? "#fff" : "#00010f",
+        height: "100vh",
+      }}
     >
       <Menu
         menuItemStyles={{
           button: {
             [`&.active`]: {
-              backgroundColor: "#13395e",
-              color: "#b6c8d9",
+              backgroundColor: "#010a14",
+              color: "#093c6b",
             },
           },
         }}
       >
-        <MenuItem
-          icon={<CloseFullscreenIcon onClick={toggleSidebar} />}
-        ></MenuItem>
+        <div style={{ display: "flex" }}>
+          <MenuItem
+            icon={<CloseFullscreenIcon onClick={toggleSidebar} />}
+          ></MenuItem>
+          <MenuItem icon={<ContrastIcon onClick={toggleTheme} />} />
+        </div>
+
         <MenuItem
           icon={
             <Link to="/dashboard">

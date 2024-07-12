@@ -1,6 +1,6 @@
 .dashboardLayout{
     margin: 0;
-    padding: 5px;
+    /* padding: 5px; */
     display: flex;
     column-gap: 5px;
     height: 100vh;
@@ -8,7 +8,6 @@
 }
 
 .sidb{
-    border: 1px solid blue;
 }
 
 .maaain{
