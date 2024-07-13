@@ -1,21 +1,15 @@
 
 .card {
-    width: 360px; /* or 25% for responsive */
-    height: 400px;
-    border: 1px solid #ddd;
-    overflow: hidden;
-    margin-bottom: 10px;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-radius: 0%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin: 5px;
+    /* border: 1px solid green; */
     padding: 5px;
+    /* height: 250px; */
+    width: 150px;
+
 }
 
 .card-image {
-    width: 100%;
+    width: 100px;
     height: 280px;
     object-fit: cover; /* Keeps the aspect ratio */
 }

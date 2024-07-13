@@ -50,23 +50,23 @@ const Home = () => {
         <HomeHeader />
       </div>
 
-      <div className="categories-container">
-        {cardData.map((data, index) => (
-          <HomeCategories
-            key={index}
-            title={data.title}
-            imageUrl={data.imageUrl}
-            links={data.links}
-            description={data.description}
-          />
-        ))}
-      </div>
+      {/* <div className="categories-container">
+          {cardData.map((data, index) => (
+            <HomeCategories
+              key={index}
+              title={data.title}
+              imageUrl={data.imageUrl}
+              links={data.links}
+              description={data.description}
+            />
+          ))}
+        </div> */}
 
       <div className="list-container">
         <ListCards />
       </div>
 
-      <div className="card-container">
+      {/* <div className="card-container">
         {cardData.map((data, index) => (
           <Card
             key={index}
@@ -76,7 +76,7 @@ const Home = () => {
             description={data.description}
           />
         ))}
-      </div>
+      </div> */}
 
       <div className="list-container2">
         <ListCard2 />

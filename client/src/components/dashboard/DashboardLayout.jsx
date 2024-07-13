@@ -12,7 +12,9 @@ const DashboardLayout = () => {
       </div>
       <div className="maaain">
         <DasbhoardNavbar className="nav" />
-        <Outlet className="outlet" />
+        <div className="outlet">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
