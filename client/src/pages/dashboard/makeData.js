@@ -77,5 +77,110 @@ export const usStateList = [
     },
   ];
   
+
+  // makeData.js
+
+// Generate a list of US states
+export const usStates = [
+  'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+  'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
+  'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+  'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+  'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+  'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+  'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
+  'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+];
+
+// Generate mock product data
+export const fakeData = [
+  {
+    id: "1",
+    firstName: "Product1",
+    lastName: "Description1",
+    email: "product1@example.com",
+    state: "California",
+  },
+  {
+    id: "2",
+    firstName: "Product2",
+    lastName: "Description2",
+    email: "product2@example.com",
+    state: "Texas",
+  },
+  {
+    id: "3",
+    firstName: "Product3",
+    lastName: "Description3",
+    email: "product3@example.com",
+    state: "Florida",
+  },
+  {
+    id: "4",
+    firstName: "Product4",
+    lastName: "Description4",
+    email: "product4@example.com",
+    state: "New York",
+  },
+  {
+    id: "5",
+    firstName: "Product5",
+    lastName: "Description5",
+    email: "product5@example.com",
+    state: "Illinois",
+  },
+  {
+    id: "6",
+    firstName: "Product6",
+    lastName: "Description6",
+    email: "product6@example.com",
+    state: "Pennsylvania",
+  },
+  {
+    id: "7",
+    firstName: "Product7",
+    lastName: "Description7",
+    email: "product7@example.com",
+    state: "Ohio",
+  },
+  {
+    id: "8",
+    firstName: "Product8",
+    lastName: "Description8",
+    email: "product8@example.com",
+    state: "Georgia",
+  },
+  {
+    id: "9",
+    firstName: "Product9",
+    lastName: "Description9",
+    email: "product9@example.com",
+    state: "North Carolina",
+  },
+  {
+    id: "10",
+    firstName: "Product10",
+    lastName: "Description10",
+    email: "product10@example.com",
+    state: "Michigan",
+  },
+  {
+    id: "11",
+    firstName: "Product11",
+    lastName: "Description11",
+    email: "product11@example.com",
+    state: "New Jersey",
+  },
+  {
+    id: "12",
+    firstName: "Product12",
+    lastName: "Description12",
+    email: "product12@example.com",
+    state: "Virginia",
+  },
+];
+
+
+
   export default data;
   

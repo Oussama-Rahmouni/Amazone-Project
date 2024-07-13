@@ -21,11 +21,13 @@
     "@table-library/react-table-library": "^4.1.7",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
     "faker": "^6.6.6",
     "material-react-table": "^2.13.0",
     "primereact": "^10.7.0",
     "react": "^18.3.1",
+    "react-big-calendar": "^1.13.1",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.1",
@@ -37,6 +39,7 @@
     "react-router-dom": "^6.24.1",
     "react-table": "^7.8.0",
     "redux": "^5.0.1",
+    "sass": "^1.77.8",
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
