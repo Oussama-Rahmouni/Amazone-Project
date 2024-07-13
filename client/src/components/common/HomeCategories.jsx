@@ -4,7 +4,7 @@ import "../styles/homeCategories.css";
 
 const HomeCategories = ({ title, imageUrl, links, description }) => {
   return (
-    <div className="card">
+    <div className="cardid">
       <h3>{title}</h3>
       <img src={imageUrl} alt={title} className="card-image" />
       {description && <p>{description}</p>}

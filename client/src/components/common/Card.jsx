@@ -2,12 +2,12 @@
 import React from "react";
 import "../styles/card.css";
 
-const Card = ({ title, imageUrl, links, description }) => {
+const Card = () => {
   return (
-    <div className="card">
-      <h3>{title}</h3>
-      <img src={imageUrl} alt={title} className="card-image" />
-      {description && <p>{description}</p>}
+    <div className="cardded">
+      <h3>title</h3>
+      <img src={""} alt={""} className="card-image" />
+      <p>descruotuib</p>
     </div>
   );
 };

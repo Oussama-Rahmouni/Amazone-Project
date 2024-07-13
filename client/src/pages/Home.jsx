@@ -51,16 +51,20 @@ const Home = () => {
       </div>
 
       {/* <div className="categories-container">
-          {cardData.map((data, index) => (
-            <HomeCategories
-              key={index}
-              title={data.title}
-              imageUrl={data.imageUrl}
-              links={data.links}
-              description={data.description}
-            />
-          ))}
-        </div> */}
+        <HomeCategories />
+      </div> */}
+
+      <div className="firstContainer">
+        {cardData.map((data, index) => (
+          <HomeCategories
+            key={index}
+            title={data.title}
+            imageUrl={data.imageUrl}
+            links={data.links}
+            description={data.description}
+          />
+        ))}{" "}
+      </div>
 
       <div className="list-container">
         <ListCards />
@@ -77,6 +81,18 @@ const Home = () => {
           />
         ))}
       </div> */}
+
+      <div className="firstContainer">
+        {cardData.map((data, index) => (
+          <HomeCategories
+            key={index}
+            title={data.title}
+            imageUrl={data.imageUrl}
+            links={data.links}
+            description={data.description}
+          />
+        ))}{" "}
+      </div>
 
       <div className="list-container2">
         <ListCard2 />

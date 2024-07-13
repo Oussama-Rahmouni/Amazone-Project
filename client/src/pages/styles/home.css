@@ -1,6 +1,24 @@
 .home-page{
     background-color: #E3E6E6 ;
+    position: relative;
+    /* display: flex;
+    flex-direction: column; */
 
+}
+
+.firstContainer{
+    /* background-color: aqua; */
+    /* border: 2px solid black; */
+    /* height: 450px; */
+    margin-top: -300px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    /* margin-top: 15px; */
+    margin: 5px;
 }
 .tophead{
     margin-bottom: 0;
@@ -13,11 +31,12 @@
 
 .categories-container {
     margin-top: -450px;
-    border: 2px solid rgb(102, 0, 255);
+    padding: 10px;
+    /* border: 2px solid rgb(102, 0, 255); */
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 8px;
+    /* flex-wrap: wrap; */
+    /* justify-content: space-around;
+    gap: 8px; */
 
 }
 
