@@ -62,5 +62,5 @@ app.use('/api', router);
 
 // Start the server
 app.listen(process.env.PORT, () => {
-    console.log('Server started at Port 5000');
+    console.log('Server started at Port 4000');
 });
