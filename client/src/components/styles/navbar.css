@@ -1,4 +1,3 @@
-/* src/components/layout/Navbar.css */
 .navbar {
     background-color: #131921;
     color: white;
@@ -50,6 +49,13 @@
 .navbar-links {
     display: flex;
     align-items: center;
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+}
+.navbar-len{
+    background: transparent;
+    text-decoration: none;
 }
 
 .navbar-link {

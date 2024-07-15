@@ -1,0 +1,31 @@
+.products-filter{
+    height: 50px;
+    background-color: aqua;
+    display: flex;
+    flex: end;
+}
+
+.products-main{
+    display: flex;
+    width: 100%;
+    border: 1px solid black;
+    justify-content: space-between;
+    gap:10px ;
+    height: 80%;
+}
+.products-sidebar{
+    /* margin: 5px; */
+    border: 1px solid blue;
+    height: 100vh;
+    flex: 1;
+    /* flex-direction: 1; */
+}
+
+.products-cards{
+    /* margin: 5px; */
+    border: 1px solid red;
+    height: 100vh;
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+} 
