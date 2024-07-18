@@ -1,6 +1,6 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } from '../controllers/product.controllers.js';
+import { addRowsIds, createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } from '../controllers/product.controllers.js';
 import authenticate from '../middlewares/authenticate.js'
 import authorize from '../middlewares/authorize.js'
 
@@ -8,6 +8,8 @@ const router = express.Router();
 
 // Only admin users should be able to create, update, and delete products
 const adminRole = ['admin'];
+
+router.post('/row_ids', addRowsIds);
 
 router.post('/',
     authenticate,
