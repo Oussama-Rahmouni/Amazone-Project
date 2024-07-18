@@ -23,7 +23,7 @@ const Home = () => {
   // } = useQuery(["backgroundImages"], getBackgroundImages);
 
   // const {
-  //   data: categories,
+  //   data: categories,git status
   //   error: categoriesError,
   //   isLoading: categoriesLoading,
   // } = useQuery(["categories"], getCategories);
