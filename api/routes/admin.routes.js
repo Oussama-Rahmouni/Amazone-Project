@@ -1,6 +1,6 @@
 import express from 'express';
 import { body, param } from 'express-validator';
-import { getAllUsers, getUserById, updateUserRole, deleteUser, getAllOrders, updateOrderStatus, deleteOrder } from '../controllers/admin.controllers.js';
+import { getAllUsers, getUserById, getItemIds, updateUserRole, deleteUser, getAllOrders, updateOrderStatus, deleteOrder } from '../controllers/admin.controllers.js';
 import authenticate from '../middlewares/authenticate.js';
 import authorize from '../middlewares/authorize.js';
 
@@ -71,5 +71,12 @@ router.delete('/orders/:id',
     ],
     deleteOrder
 );
+
+//get the ids of the items to be shown in the home page
+router.get('/getit',
+    // authenticate,
+    // authorize(['admin']),
+    getItemIds
+)
 
 export default router;

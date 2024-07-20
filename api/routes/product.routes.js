@@ -9,7 +9,7 @@ const router = express.Router();
 // Only admin users should be able to create, update, and delete products
 const adminRole = ['admin'];
 
-router.post('/row_ids', addRowsIds);
+router.post('/submit', addRowsIds);
 
 router.post('/',
     authenticate,

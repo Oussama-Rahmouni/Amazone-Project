@@ -14,31 +14,32 @@ import ListCards from "../components/common/ListCards.jsx";
 import ListCard2 from "../components/common/ListCard2.jsx";
 import GoUp from "../components/common/GoUp.jsx";
 import TopHeader from "../components/common/TopHeader.jsx";
+import { getItemsIds } from "../services/adminService.js";
 
 const Home = () => {
-  // const {
-  //   data: backgroundImages,
-  //   error: bgImagesError,
-  //   isLoading: bgImagesLoading,
-  // } = useQuery(["backgroundImages"], getBackgroundImages);
+  const { data, loading, errors } = useQuery({
+    queryKey: ["getIds"],
+    queryFn: getItemsIds,
+  });
 
-  // const {
-  //   data: categories,git status
-  //   error: categoriesError,
-  //   isLoading: categoriesLoading,
-  // } = useQuery(["categories"], getCategories);
+  if (loading) {
+    return <div>Loading</div>;
+  }
 
-  // const {
-  //   data: featuredProducts,
-  //   error: featuredProductsError,
-  //   isLoading: featuredProductsLoading,
-  // } = useQuery(["featuredProducts"], getFeaturedProducts);
+  if (errors) {
+    return <div> problem happend : {erros}</div>;
+  }
 
-  // if (bgImagesLoading || categoriesLoading || featuredProductsLoading)
-  //   return <div>Loading...</div>;
+  // Transform the data
+  const transformedData = data?.map((item) => {
+    const parsedIds = JSON.parse(item.itemsIds); // Convert the string to an array
+    return {
+      id: item.id,
+      options: parsedIds.map((id) => ({ value: id, label: id.toString() })), // Map to { value, label } format
+    };
+  });
 
-  // if (bgImagesError || categoriesError || featuredProductsError)
-  //   return <div>An error occurred</div>;*
+  console.log("Transformed Data: ", transformedData);
 
   return (
     <div className="home-page">

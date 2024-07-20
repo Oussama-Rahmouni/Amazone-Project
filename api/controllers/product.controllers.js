@@ -5,24 +5,36 @@ import { validationResult } from 'express-validator';
 
 export const addRowsIds = async (req, res) => {
     const rows = req.body;
-    if (!rows || !Array.isArray(rows)) {
-        return res.status(400).json({ error: 'Invalid data format' });
-    }
-
-    const updateQuery = "UPDATE idstofeature SET row_ids = ? WHERE id = ?";
-
+    const updateQuery = "UPDATE itemsids SET itemsids = ? WHERE id = ?";
     try {
-        await Promise.all(rows.map(async (numbers, index) => {
-            const id = index + 1;
-            const numbersArray = numbers.split(',').map(numStr => parseInt(numStr.trim()));
-            await db.query(updateQuery, [JSON.stringify(numbersArray), id]);
-        }));
-        res.status(200).json({ message: "Data updated" });
+        let i = 1;
+        async function sendToDB(updateQuery,array, i){
+            const result = await db.query(updateQuery, [JSON.stringify(array), i]);
+            return result
+        }
+        async function firstOne(){
+            for (const key in rows) {
+                if (rows.hasOwnProperty(key)) {
+                    const array = [];
+                    const row = rows[key];
+                    for (const subArray of row) {
+                        array.push(subArray.id);
+                    }
+                    console.log(`Updating ID ${i} with array:`, array);
+                    const respon = await sendToDB(updateQuery, array, i)
+                    console.log(`Update result for ID ${i}:`, respon);
+                    i++;
+                }
+            }
+        }
+       await  firstOne()
+        res.status(200).json({ result: "worked!!!" });
     } catch (error) {
-        console.error("Error updating rows:", error);
-        res.status(500).json({ error: "Failed to update rows" });
+        res.status(500).json({ problem: error });
+        console.log("here is prob, ", error);
     }
 };
+
 
 
 // Create a new product
