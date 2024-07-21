@@ -55,3 +55,35 @@ export const getCategories = async (req, res) => {
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
+
+export const getItemIdsForHomePage = async (req, res) => {
+    try {
+        const q = 'SELECT id, itemsIds FROM itemsIds';
+        const [result] = await db.execute(q);
+        if (result.length === 0) {
+            return res.status(404).json({ message: 'No data found' });
+        }
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error in getItemIds:', error);
+        
+    }
+}
+
+export const homProducts = async (req, res) => {
+    try {
+        // Parse the ids from the query string and convert them into integers
+        const ids = req.query.ids.split(',').map(id => parseInt(id));
+        const placeholders = ids.map(_ => '?').join(','); // Create placeholders for parameterized query
+
+        // SQL query to fetch products with given ids
+        const query = `SELECT * FROM products WHERE id IN (${placeholders})`;
+        const products = await db.query(query, ids); // Execute the parameterized query
+        console.log("Here are the products:", products);
+        
+        res.json(products);
+    } catch (error) {
+        console.error("Error in homProducts:", error);
+        res.status(500).send("Internal server error");
+    }
+};

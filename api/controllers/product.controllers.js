@@ -10,9 +10,7 @@ export const addRowsIds = async (req, res) => {
     try {
         for (let i = 0; i < rows.length; i++) {
             const array = rows[i].map(item => item.id); // Extracting ids from each subarray
-            console.log(`Updating ID ${i + 1} with array:`, array);
             const result = await db.query(updateQuery, [JSON.stringify(array), i + 1]);
-            console.log(`Update result for ID ${i + 1}:`, result);
         }
         res.status(200).json({ result: "worked!!!" });
     } catch (error) {

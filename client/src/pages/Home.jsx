@@ -1,9 +1,4 @@
 import React, { useEffect } from "react";
-import {
-  getBackgroundImages,
-  getCategories,
-  getFeaturedProducts,
-} from "../services/homeService.js";
 import Card from "../components/common/Card.jsx";
 import "./styles/home.css";
 import { useQuery } from "react-query";
@@ -14,32 +9,24 @@ import ListCards from "../components/common/ListCards.jsx";
 import ListCard2 from "../components/common/ListCard2.jsx";
 import GoUp from "../components/common/GoUp.jsx";
 import TopHeader from "../components/common/TopHeader.jsx";
-import { getItemsIds } from "../services/adminService.js";
+import { fetchIdsAndProducts } from "../services/homeService.js";
 
 const Home = () => {
   const { data, loading, errors } = useQuery({
-    queryKey: ["getIds"],
-    queryFn: getItemsIds,
+    queryKey: "getItemsIdsForHomePage",
+    queryFn: fetchIdsAndProducts,
   });
 
   if (loading) {
     return <div>Loading</div>;
   }
-
   if (errors) {
-    return <div> problem happend : {erros}</div>;
+    return <div>Error happend</div>;
   }
 
-  // Transform the data
-  const transformedData = data?.map((item) => {
-    const parsedIds = JSON.parse(item.itemsIds); // Convert the string to an array
-    return {
-      id: item.id,
-      options: parsedIds.map((id) => ({ value: id, label: id.toString() })), // Map to { value, label } format
-    };
-  });
-
-  console.log("Transformed Data: ", transformedData);
+  if (data) {
+    console.log("final data here ", data);
+  }
 
   return (
     <div className="home-page">
@@ -51,9 +38,9 @@ const Home = () => {
         <HomeHeader />
       </div>
 
-      {/* <div className="categories-container">
+      <div className="categories-container">
         <HomeCategories />
-      </div> */}
+      </div>
 
       <div className="firstContainer">
         {cardData.map((data, index) => (
@@ -64,14 +51,14 @@ const Home = () => {
             links={data.links}
             description={data.description}
           />
-        ))}{" "}
+        ))}
       </div>
 
       <div className="list-container">
         <ListCards />
       </div>
 
-      {/* <div className="card-container">
+      <div className="card-container">
         {cardData.map((data, index) => (
           <Card
             key={index}
@@ -81,7 +68,7 @@ const Home = () => {
             description={data.description}
           />
         ))}
-      </div> */}
+      </div>
 
       <div className="firstContainer">
         {cardData.map((data, index) => (

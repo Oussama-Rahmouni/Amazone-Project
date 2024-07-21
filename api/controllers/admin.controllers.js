@@ -127,17 +127,4 @@ export const deleteOrder = async (req, res) => {
 
 
 
-export const getItemIds = async (req, res) => {
-    try {
-        console.log('Received request in getItemIds');
-        const q = 'SELECT id, itemsIds FROM itemsIds';
-        const [result] = await db.execute(q);
-        if (result.length === 0) {
-            return res.status(404).json({ message: 'No data found' });
-        }
-        res.status(200).json(result);
-    } catch (error) {
-        console.error('Error in getItemIds:', error);
-        handleError(error, req, res);
-    }
-};
+
