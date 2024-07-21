@@ -9,23 +9,36 @@ import ListCards from "../components/common/ListCards.jsx";
 import ListCard2 from "../components/common/ListCard2.jsx";
 import GoUp from "../components/common/GoUp.jsx";
 import TopHeader from "../components/common/TopHeader.jsx";
-import { fetchIdsAndProducts } from "../services/homeService.js";
+import { fetchIdsAndProducts, getCategories } from "../services/homeService.js";
 
 const Home = () => {
-  const { data, loading, errors } = useQuery({
+  const {
+    data: products,
+    loading,
+    erros,
+  } = useQuery({
     queryKey: "getItemsIdsForHomePage",
     queryFn: fetchIdsAndProducts,
+  });
+
+  const { data: categories } = useQuery({
+    queryKey: "fetchCategories",
+    queryFn: getCategories,
   });
 
   if (loading) {
     return <div>Loading</div>;
   }
-  if (errors) {
+  if (erros) {
     return <div>Error happend</div>;
   }
 
-  if (data) {
-    console.log("final data here ", data);
+  if (products) {
+    console.log("final data here ", products);
+  }
+
+  if (categories) {
+    console.log("final data 2 here ", categories);
   }
 
   return (

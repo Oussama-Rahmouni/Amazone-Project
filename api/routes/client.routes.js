@@ -1,5 +1,5 @@
 import express from 'express';
-import { getProduct, homProducts, getProducts, searchProducts, filterProducts, getCategories, getItemIdsForHomePage } from '../controllers/client.controllers.js';
+import { getProduct, getHomProducts, getProducts, searchProducts, filterProducts, getCategories, getItemIdsForHomePage } from '../controllers/client.controllers.js';
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/filter', filterProducts);
 
 router.get('/getit', getItemIdsForHomePage);
 router.get('/categories', getCategories);
-router.get('/home-products', homProducts);
+router.get('/home-products', getHomProducts);
 
 
 export default router;

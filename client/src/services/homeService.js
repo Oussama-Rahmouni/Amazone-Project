@@ -11,7 +11,7 @@ export const getBackgroundImages = async () => {
 
 export const getCategories = async () => {
     try {
-        const response = await api.get('/categories');
+        const response = await api.get('/client/categories');
         return response.data;
     } catch (error) {
         throw error;
@@ -42,8 +42,6 @@ export const searchProducts = async (searchTerm, categoryFilter = '') => {
 };
 
 
-// services/home.js
-
 export async function fetchIdsAndProducts() {
     try {
         // Fetch IDs from the database
@@ -67,4 +65,3 @@ export async function fetchIdsAndProducts() {
     }
 }
 
-  
