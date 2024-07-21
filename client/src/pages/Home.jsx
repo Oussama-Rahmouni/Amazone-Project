@@ -33,13 +33,14 @@ const Home = () => {
     return <div>Error happend</div>;
   }
 
-  if (products) {
-    console.log("final data here ", products);
-  }
+  const firstProductSet = products && products[0] ? products[0][0] : [];
+  const secondProductSet = products && products[1] ? products[1][0] : [];
+  const thirdProductSet = products && products[2] ? products[2][0] : [];
+  const fourthProductSet = products && products[3] ? products[3][0] : [];
+  const fifthProductSet = products && products[4] ? products[4][0] : [];
+  const sixthProductSet = products && products[5] ? products[5][0] : [];
 
-  if (categories) {
-    console.log("final data 2 here ", categories);
-  }
+  console.log("first data ", firstProductSet);
 
   return (
     <div className="home-page">
@@ -48,7 +49,7 @@ const Home = () => {
       </div>
 
       <div className="home-header">
-        <HomeHeader />
+        <HomeHeader firstProductSet={firstProductSet} />
       </div>
 
       <div className="categories-container">
@@ -56,12 +57,11 @@ const Home = () => {
       </div>
 
       <div className="firstContainer">
-        {cardData.map((data, index) => (
+        {secondProductSet.map((data, index) => (
           <HomeCategories
             key={index}
-            title={data.title}
-            imageUrl={data.imageUrl}
-            links={data.links}
+            title={data.name}
+            imageUrl={data.image_url}
             description={data.description}
           />
         ))}

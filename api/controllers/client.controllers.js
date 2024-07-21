@@ -49,9 +49,7 @@ export const filterProducts = async (req, res) => {
 // Get all categories
 export const getCategories = async (req, res) => {
     try {
-        const [categories] = await db.query('SELECT * FROM categories');
-        console.log("hay cat ", categories)
-        res.json(categories);
+        const [categories] = await db.query('SELECT * FROM categories');        res.json(categories);
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });
     }

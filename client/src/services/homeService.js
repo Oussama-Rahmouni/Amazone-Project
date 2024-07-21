@@ -47,8 +47,6 @@ export async function fetchIdsAndProducts() {
         // Fetch IDs from the database
         const result = await api.get("/client/getit");
         const ids = result.data;
-
-        console.log("Here is data: ", ids);
         
         // Parse the itemsIds which are stored as strings resembling arrays
         const requests = ids.map((item) =>
