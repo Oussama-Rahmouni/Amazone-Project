@@ -1,80 +1,110 @@
-import "../styles/admindashboard.css";
-import React from "react";
-import { WithContext as ReactTags } from "react-tag-input";
-import { useForm, Controller } from "react-hook-form";
-import { useQuery, useMutation } from "react-query";
-import { getItemsIds, submitData } from "../../services/adminService";
-const KeyCodes = {
-  comma: 188,
-  enter: 13,
-};
-
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
+import React, { useState } from "react";
+import "../styles/admindashboard.css"; // Importing the CSS file for styling
 
 const DashboardAdmin = () => {
-  const { control, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log("submited data ", data);
-    mutation.mutate(data);
-  };
-
-  // const {
-  //   data: itemsData,
-  //   isLoading,
-  //   error,
-  // } = useQuery({
-  //   queryKey: ["getIds"],
-  //   queryFn: getItemsIds,
-  // });
-
-  const mutation = useMutation(submitData, {
-    onSuccess: () => {
-      console.log("Data submitted successfully");
-    },
+  const [inputs, setInputs] = useState({
+    input1: "",
+    input2: "",
+    input3: "",
+    input4: "",
+    input5: "",
+    input6: "",
   });
 
-  // if (isLoading) {
-  //   return <div>Loading</div>;
-  // }
+  const [notification, setNotification] = useState({
+    visible: false,
+    message: "",
+  });
 
-  // if (error) {
-  //   return <div>Problem happened: {error.message}</div>;
-  // }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const inputValues = Object.values(inputs).map((input) =>
+      input.split(",").map((num) => ({ id: parseInt(num.trim(), 10) }))
+    );
+
+    // Check if any input is empty
+    if (
+      inputValues.some((array) => array.some((subArray) => isNaN(subArray.id)))
+    ) {
+      alert("All inputs are required and must be valid numbers.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/product/submit", {
+        method: "POST",
+        credentials: "include", // to include cookies in the request
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputValues),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        showNotification("Submission successful!", true);
+        // Clear the form fields
+        setInputs({
+          input1: "",
+          input2: "",
+          input3: "",
+          input4: "",
+          input5: "",
+          input6: "",
+        });
+      } else {
+        showNotification(`Error: ${data.result || "Failed to submit"}`, false);
+      }
+    } catch (error) {
+      showNotification(`Error: ${error.message}`, false);
+    }
+  };
+
+  const showNotification = (message, isSuccess) => {
+    setNotification({ visible: true, message, isSuccess });
+    setTimeout(() => {
+      setNotification({ visible: false, message: "" });
+    }, 3000);
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="admindash">
-      <div className="inputs">
-        {Array.from({ length: 6 }).map((_, index) => (
-          <Controller
-            key={index}
-            name={`input${index}`}
-            control={control}
-            render={({ field }) => (
-              <ReactTags
-                {...field}
-                tags={field.value || []}
-                handleDelete={(i) => {
-                  const newTags = field.value.filter((tag, idx) => idx !== i);
-                  field.onChange(newTags);
-                }}
-                handleAddition={(tag) => {
-                  const newTags = [...(field.value || []), tag];
-                  field.onChange(newTags);
-                }}
-                delimiters={delimiters}
-                inputFieldPosition="top"
-                placeholder="Add new ID"
-              />
-            )}
-          />
+    <div className="dashboard-admin">
+      <h2>Dashboard Admin</h2>
+      <form onSubmit={handleSubmit}>
+        {Object.entries(inputs).map(([key, value], index) => (
+          <div key={key} className="input-container">
+            <label>{`Input ${index + 1}:`}</label>
+            <input
+              type="text"
+              name={key}
+              value={value}
+              onChange={handleChange}
+              placeholder="Enter numbers separated by commas"
+            />
+          </div>
         ))}
-      </div>
-      <div className="dashbutton">
-        <button type="submit" className="dash-btn">
+        <button type="submit" className="submit-btn">
           Submit
         </button>
-      </div>
-    </form>
+      </form>
+      {notification.visible && (
+        <div
+          className={`notification ${
+            notification.isSuccess ? "success" : "error"
+          }`}
+        >
+          {notification.message}
+        </div>
+      )}
+    </div>
   );
 };
 

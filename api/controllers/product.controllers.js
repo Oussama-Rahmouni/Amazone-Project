@@ -4,36 +4,23 @@ import { validationResult } from 'express-validator';
 
 
 export const addRowsIds = async (req, res) => {
-    const rows = req.body;
+    const rows = req.body; // rows should be an array of arrays with {id} objects
     const updateQuery = "UPDATE itemsids SET itemsids = ? WHERE id = ?";
+
     try {
-        let i = 1;
-        async function sendToDB(updateQuery,array, i){
-            const result = await db.query(updateQuery, [JSON.stringify(array), i]);
-            return result
+        for (let i = 0; i < rows.length; i++) {
+            const array = rows[i].map(item => item.id); // Extracting ids from each subarray
+            console.log(`Updating ID ${i + 1} with array:`, array);
+            const result = await db.query(updateQuery, [JSON.stringify(array), i + 1]);
+            console.log(`Update result for ID ${i + 1}:`, result);
         }
-        async function firstOne(){
-            for (const key in rows) {
-                if (rows.hasOwnProperty(key)) {
-                    const array = [];
-                    const row = rows[key];
-                    for (const subArray of row) {
-                        array.push(subArray.id);
-                    }
-                    console.log(`Updating ID ${i} with array:`, array);
-                    const respon = await sendToDB(updateQuery, array, i)
-                    console.log(`Update result for ID ${i}:`, respon);
-                    i++;
-                }
-            }
-        }
-       await  firstOne()
         res.status(200).json({ result: "worked!!!" });
     } catch (error) {
-        res.status(500).json({ problem: error });
-        console.log("here is prob, ", error);
+        res.status(500).json({ problem: error.message });
+        console.log("here is prob, ", error.message);
     }
 };
+
 
 
 
