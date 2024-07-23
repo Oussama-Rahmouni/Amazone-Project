@@ -2,14 +2,15 @@
 import React from "react";
 import "../styles/homeCategories.css";
 
-const HomeCategories = ({ title, imageUrl, links, description }) => {
-  return (
-    <div className="cardid">
-      <h3>{title}</h3>
-      <img src={imageUrl} alt={title} className="card-image" />
-      {description && <p>{description}</p>}
+const HomeCategories = ({ categories }) => {
+  console.log("here ", categories);
+  return categories?.map((category, index) => (
+    <div className="cardid" key={index}>
+      <h3>{category.name}</h3>
+      <img src={category.imageUrl} alt={category.name} className="card-image" />
+      {category.description && <p>{category.description}</p>}
     </div>
-  );
+  ));
 };
 
 export default HomeCategories;

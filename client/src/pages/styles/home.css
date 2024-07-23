@@ -25,19 +25,20 @@
 }
 .home-header{
     position: relative;
-    height: 80vh;
-    margin: 5px;
+    height: 77.5vh;
+    z-index: 1; 
+
 }
 
 .categories-container {
-    margin-top: -450px;
-    padding: 10px;
-    /* border: 2px solid rgb(102, 0, 255); */
     display: flex;
-    /* flex-wrap: wrap; */
-    /* justify-content: space-around;
-    gap: 8px; */
-
+    margin-top: -45vh;
+    position: relative; /* Make sure this is positioned */
+    z-index: 2; 
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .card-container {

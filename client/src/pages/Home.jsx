@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../components/common/Card.jsx";
 import "./styles/home.css";
 import { useQuery } from "react-query";
@@ -12,27 +12,39 @@ import TopHeader from "../components/common/TopHeader.jsx";
 import { fetchIdsAndProducts, getCategories } from "../services/homeService.js";
 
 const Home = () => {
+  const [fetchProducts, setFetchProducts] = useState(true);
+
   const {
     data: products,
-    loading,
-    erros,
+    isLoading: loadingProducts,
+    error: errorsProducts,
   } = useQuery({
     queryKey: "getItemsIdsForHomePage",
     queryFn: fetchIdsAndProducts,
+    enabled: fetchProducts,
+    onSettled: () => setFetchProducts(false), // Reset to false after fetching
   });
 
-  const { data: categories } = useQuery({
+  const {
+    data: categories,
+    isLoading: loadingCategories,
+    error: errorsCategories,
+  } = useQuery({
     queryKey: "fetchCategories",
     queryFn: getCategories,
+    enabled: fetchProducts,
+    onSettled: () => setFetchProducts(false), // Reset to false after fetching
   });
 
-  if (loading) {
-    return <div>Loading</div>;
+  // Conditional rendering for loading and error states
+  if (loadingProducts || loadingCategories) {
+    return <div>Loading...</div>;
   }
-  if (erros) {
-    return <div>Error happend</div>;
+  if (errorsProducts || errorsCategories) {
+    return <div>Error happened</div>;
   }
 
+  // Data extraction from fetched products
   const firstProductSet = products && products[0] ? products[0][0] : [];
   const secondProductSet = products && products[1] ? products[1][0] : [];
   const thirdProductSet = products && products[2] ? products[2][0] : [];
@@ -40,8 +52,7 @@ const Home = () => {
   const fifthProductSet = products && products[4] ? products[4][0] : [];
   const sixthProductSet = products && products[5] ? products[5][0] : [];
 
-  console.log("first data ", firstProductSet);
-
+  console.log("categories data ", categories);
   return (
     <div className="home-page">
       <div className="tophead">
@@ -53,9 +64,10 @@ const Home = () => {
       </div>
 
       <div className="categories-container">
-        <HomeCategories />
+        <HomeCategories categories={categories} />
       </div>
 
+      {/* 
       <div className="firstContainer">
         {secondProductSet.map((data, index) => (
           <HomeCategories
@@ -101,7 +113,7 @@ const Home = () => {
 
       <div>
         <GoUp />
-      </div>
+      </div> */}
     </div>
   );
 };
