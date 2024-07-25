@@ -1,15 +1,99 @@
 // src/components/Card.js
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Button } from "primereact/button";
+import { Carousel } from "primereact/carousel";
+import { Tag } from "primereact/tag";
+import { ProductService } from "../../services/ProductService";
 import "../styles/card.css";
 
-const Card = () => {
+const Card = ({ fourthProductSet }) => {
+  console.log("data fourth is here ", fourthProductSet);
+
+  const [products, setProducts] = useState([]);
+  const responsiveOptions = [
+    {
+      breakpoint: "1400px",
+      numVisible: 2,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "1199px",
+      numVisible: 3,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "767px",
+      numVisible: 2,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "575px",
+      numVisible: 1,
+      numScroll: 1,
+    },
+  ];
+
+  const getSeverity = (product) => {
+    switch (product.inventoryStatus) {
+      case "INSTOCK":
+        return "success";
+
+      case "LOWSTOCK":
+        return "warning";
+
+      case "OUTOFSTOCK":
+        return "danger";
+
+      default:
+        return null;
+    }
+  };
+
+  useEffect(() => {
+    setProducts(fourthProductSet.slice(0, 9));
+  }, []);
+
+  const productTemplate = (product) => {
+    return (
+      <div className=" product-template border-1 surface-border border-round m-2 text-center py-5 px-3">
+        <div className="mb-3">
+          <img
+            src={product.image_url}
+            alt={product.name}
+            className="card_image"
+          />
+        </div>
+        <div>
+          <h4 className="">{product.name}</h4>
+          <h6 className="mt">${product.price}</h6>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="cardded">
-      <h3>title</h3>
-      <img src={""} alt={""} className="card-image" />
-      <p>descruotuib</p>
+    <div className="card">
+      <Carousel
+        value={products}
+        numVisible={3}
+        numScroll={3}
+        responsiveOptions={responsiveOptions}
+        itemTemplate={productTemplate}
+      />
     </div>
   );
+
+  // return fourthProductSet?.map((products, index) => (
+  //   <div className="cardded" key={index}>
+  //     <h3>{products.name}</h3>
+  //     <img
+  //       src={products.image_url}
+  //       alt={products.descriptoin}
+  //       className="card-image"
+  //     />
+  //     {products.description && <p>{products.description}</p>}
+  //   </div>
+  // ));
 };
 
 export default Card;

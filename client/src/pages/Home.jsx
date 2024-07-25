@@ -10,6 +10,7 @@ import ListCard2 from "../components/common/ListCard2.jsx";
 import GoUp from "../components/common/GoUp.jsx";
 import TopHeader from "../components/common/TopHeader.jsx";
 import { fetchIdsAndProducts, getCategories } from "../services/homeService.js";
+import ProductsCards from "../components/common/ProductCards.jsx";
 
 const Home = () => {
   const [fetchProducts, setFetchProducts] = useState(true);
@@ -52,7 +53,7 @@ const Home = () => {
   const fifthProductSet = products && products[4] ? products[4][0] : [];
   const sixthProductSet = products && products[5] ? products[5][0] : [];
 
-  console.log("categories data ", categories);
+  console.log("here is our  data ", thirdProductSet);
   return (
     <div className="home-page">
       <div className="tophead">
@@ -67,33 +68,18 @@ const Home = () => {
         <HomeCategories categories={categories} />
       </div>
 
-      {/* 
-      <div className="firstContainer">
-        {secondProductSet.map((data, index) => (
-          <HomeCategories
-            key={index}
-            title={data.name}
-            imageUrl={data.image_url}
-            description={data.description}
-          />
-        ))}
-      </div>
-
       <div className="list-container">
-        <ListCards />
+        <ListCards thirdProductSet={thirdProductSet} />
+      </div>
+      <div className="firstContainer">
+        <ProductsCards secondProductSet={secondProductSet} />
       </div>
 
       <div className="card-container">
-        {cardData.map((data, index) => (
-          <Card
-            key={index}
-            title={data.title}
-            imageUrl={data.imageUrl}
-            links={data.links}
-            description={data.description}
-          />
-        ))}
+        <Card fourthProductSet={fourthProductSet} />
       </div>
+
+      {/* 
 
       <div className="firstContainer">
         {cardData.map((data, index) => (
@@ -106,14 +92,10 @@ const Home = () => {
           />
         ))}{" "}
       </div>
-
+*/}
       <div className="list-container2">
         <ListCard2 />
       </div>
-
-      <div>
-        <GoUp />
-      </div> */}
     </div>
   );
 };

@@ -52,7 +52,7 @@ const ListCard2 = () => {
             max: 3000,
             min: 1024,
           },
-          items: 3,
+          items: 4,
           partialVisibilityGutter: 40,
         },
         mobile: {
@@ -78,44 +78,44 @@ const ListCard2 = () => {
       shouldResetAutoplay
       showDots={false}
       sliderClass=""
-      slidesToSlide={2}
+      slidesToSlide={3}
       swipeable
     >
       <div className="listCards">
-        <img src={one} alt="" style={{ height: "330px", width: "390px" }} />
+        <img src={one} alt="" style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={two} alt="" style={{ height: "330px", width: "390px" }} />
+        <img src={two} alt="" style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={three} alt=" " style={{ height: "330px", width: "390px" }} />
+        <img src={three} alt=" " style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={four} alt="" style={{ height: "330px", width: "390px" }} />
+        <img src={four} alt="" style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={one} alt="" style={{ height: "330px", width: "390px" }} />
+        <img src={one} alt="" style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={two} alt="" style={{ height: "330px", width: "390px" }} />
+        <img src={two} alt="" style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={three} alt=" " style={{ height: "330px", width: "390px" }} />
+        <img src={three} alt=" " style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={four} alt="" style={{ height: "330px", width: "390px" }} />
+        <img src={four} alt="" style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={one} alt="" style={{ height: "330px", width: "390px" }} />
+        <img src={one} alt="" style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={two} alt="" style={{ height: "330px", width: "390px" }} />
+        <img src={two} alt="" style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={three} alt=" " style={{ height: "330px", width: "390px" }} />
+        <img src={three} alt=" " style={{ height: "330px", width: "250px" }} />
       </div>
       <div className="listCards">
-        <img src={four} alt="" style={{ height: "330px", width: "390px" }} />
+        <img src={four} alt="" style={{ height: "330px", width: "250px" }} />
       </div>
     </Carousel>
   );

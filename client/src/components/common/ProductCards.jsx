@@ -1,20 +1,15 @@
+// src/components/Card.js
 import React from "react";
-import "../styles/main.css";
+import "../styles/homeCategories.css";
 
-const ProductCards = () => {
-  return (
-    <div className="card">
-      <div className="card-img">
-        <img src="" alt="No image yet" />
-      </div>
-      <div className="card-second">
-        <h1>title</h1>
-        <h3>dra chniya</h3>
-        <h3>dra chniya</h3>
-        <h3>dra chniya</h3>
-      </div>
+const ProductsCards = ({ secondProductSet }) => {
+  return secondProductSet?.map((product, index) => (
+    <div className="cardid" key={index}>
+      <h3>{product.name}</h3>
+      <img src={product.image_url} alt={product.name} className="card-image" />
+      {product.description && <p>{product.description}</p>}
     </div>
-  );
+  ));
 };
 
-export default ProductCards;
+export default ProductsCards;
