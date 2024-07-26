@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../styles/listCard.css";
+import { Link } from "react-router-dom";
 
 const ListCards = ({ thirdProductSet }) => {
   const responsive = {
@@ -83,11 +84,13 @@ const ListCards = ({ thirdProductSet }) => {
     >
       {thirdProductSet?.map((product, index) => (
         <div className="listCards" key={index}>
-          <img
-            src={product.image_url}
-            alt=""
-            style={{ height: "330px", width: "450px" }}
-          />
+          <Link to={`/product/${product.name}`}>
+            <img
+              src={product.image_url}
+              alt=""
+              style={{ height: "330px", width: "450px" }}
+            />
+          </Link>
         </div>
       ))}
     </Carousel>

@@ -5,6 +5,7 @@ import { Carousel } from "primereact/carousel";
 import { Tag } from "primereact/tag";
 import { ProductService } from "../../services/ProductService";
 import "../styles/card.css";
+import { Link } from "react-router-dom";
 
 const Card = ({ fourthProductSet }) => {
   console.log("data fourth is here ", fourthProductSet);
@@ -57,11 +58,13 @@ const Card = ({ fourthProductSet }) => {
     return (
       <div className=" product-template border-1 surface-border border-round m-2 text-center py-5 px-3">
         <div className="mb-3">
-          <img
-            src={product.image_url}
-            alt={product.name}
-            className="card_image"
-          />
+          <Link to={`/product/${product.name}`}>
+            <img
+              src={product.image_url}
+              alt={product.name}
+              className="card_image"
+            />
+          </Link>
         </div>
         <div>
           <h4 className="">{product.name}</h4>
