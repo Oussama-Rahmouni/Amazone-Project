@@ -1,6 +1,6 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { addRowsIds, createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } from '../controllers/product.controllers.js';
+import { addRowsIds, createProduct, getAllProducts,getProductsByCategory,  getProductById, updateProduct, deleteProduct } from '../controllers/product.controllers.js';
 import authenticate from '../middlewares/authenticate.js'
 import authorize from '../middlewares/authorize.js'
 
@@ -26,6 +26,7 @@ router.post('/',
 );
 
 router.get('/', getAllProducts);
+router.get('/category/:name', getProductsByCategory)
 router.get('/:id', getProductById);
 
 router.put("/:id",authenticate,

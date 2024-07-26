@@ -1,6 +1,6 @@
 // src/services/productService.js
 import api from './apiConfig';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 
 // Fetch all products
 export const fetchProducts = async () => {
@@ -32,3 +32,13 @@ export const useFetchProductDetails = (productId) => {
         onError: (error) => console.error('Error fetching product details:', error)
     });
 };
+
+
+export const getCategoryProducts = async (category) =>{
+    try {
+        const result = await api.get(`/product/category/${category}`)
+        return result.data
+    } catch (error) {
+        console.log("an issue happened while geting categorie data ", error)
+    }
+}

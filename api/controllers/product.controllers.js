@@ -115,6 +115,22 @@ export const deleteProduct = async (req, res) => {
     }
 };
 
+export const getProductsByCategory = async (req, res) =>{
+    const {name } = req.params
+    try {
+        const categoryId = "SELECT * FROM categories WHERE name = ? " 
+        const result1 = await db.query(categoryId, [name])
+        const id = result1[0][0].id
+        const q = "SELECT * FROM products WHERE category_id = ?"
+        const result2 = await db.query(q, [id])
+        res.status(200).json(result2[0])
+    } catch (error) {
+        console.log("the isssue is here ", error)
+        res.status(500).json(error)
+    }
+} 
+
+
 
 // Explanation of Enhancements
 // Validation: Input validation ensures the integrity of data being added or updated.

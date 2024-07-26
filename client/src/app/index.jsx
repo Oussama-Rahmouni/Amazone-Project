@@ -20,7 +20,6 @@ import DashInbox from "../pages/dashboard/DashInbox";
 import DashUsers from "../pages/dashboard/DashUsers";
 import DashCalendar from "../pages/dashboard/DashCalendar";
 
-
 // Define routes using createBrowserRouter
 const router = createBrowserRouter([
   {
@@ -34,8 +33,9 @@ const router = createBrowserRouter([
       { path: "order", element: <OrderSummary /> },
       { path: "profile", element: <Profile /> },
       { path: "register", element: <Register /> },
+      { path: "category/:name", element: <Products /> },
       { path: "products", element: <Products /> },
-      { path: "products/:id", element: <ProductDetail /> },
+      { path: "products/:name", element: <ProductDetail /> },
       // You can add more nested routes here
     ],
   },
