@@ -22,6 +22,7 @@ import DashCalendar from "../pages/dashboard/DashCalendar";
 
 // Define routes using createBrowserRouter
 const router = createBrowserRouter([
+  { path: "register", element: <Register /> },
   {
     path: "/",
     element: <Layout />,
@@ -32,7 +33,6 @@ const router = createBrowserRouter([
       { path: "checkout", element: <Checkout /> },
       { path: "order", element: <OrderSummary /> },
       { path: "profile", element: <Profile /> },
-      { path: "register", element: <Register /> },
       { path: "category/:name", element: <Products /> },
       { path: "products", element: <Products /> },
       { path: "products/:name", element: <ProductDetail /> },

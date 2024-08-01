@@ -63,3 +63,93 @@
 .signin-form a:hover {
     text-decoration: underline;
 }
+
+
+
+/* Register Desktop version */
+
+.register-container{
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.register-upper{
+    width: 200px;
+    flex: 0.7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-form{
+    width: 350px;
+    border-radius:10px ;
+    flex: 7.5;
+    margin-bottom: 20px;
+    border: 1px solid lightgray;
+}
+
+.register-footer {
+    width: 100%;
+    flex: 2;
+    background-color: #FCFCFC;
+    position: relative; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.register-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, lightgray, transparent);
+}
+.register-link{
+    font-size: 11px;
+    font-weight: 600;
+    /* font-weight: 100; */
+}
+.register-footer-links{
+    width: 260px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-input{
+    width: 93%;
+    margin-left: 13px;
+    margin-bottom: 15px;
+}
+
+.register-input-field{
+    width: 100%;
+    border: 1px solid rgba(22, 3, 3, 0.249);
+    border-radius: 5px;
+    height: 35px;
+}
+
+.register-btn{
+    height: 30px;
+    background-color: #FFD814;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+}
+
+.register-labels{
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+}
