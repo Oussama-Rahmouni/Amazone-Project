@@ -15,6 +15,10 @@ import ProductsCards from "../components/common/ProductCards.jsx";
 const Home = () => {
   const [fetchProducts, setFetchProducts] = useState(true);
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   const {
     data: products,
     isLoading: loadingProducts,

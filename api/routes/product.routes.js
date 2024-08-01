@@ -1,6 +1,6 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { addRowsIds, createProduct, getAllProducts,getProductsByCategory,  getProductById, updateProduct, deleteProduct } from '../controllers/product.controllers.js';
+import { addRowsIds, createProduct, getAllProducts, searchProducts, getProductsByCategory,  getProductById, updateProduct, deleteProduct } from '../controllers/product.controllers.js';
 import authenticate from '../middlewares/authenticate.js'
 import authorize from '../middlewares/authorize.js'
 
@@ -47,5 +47,7 @@ router.delete('/:id',
     authorize(adminRole),
     deleteProduct
 );
+
+router.post("/search", searchProducts)
 
 export default router;

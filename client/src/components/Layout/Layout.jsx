@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
 import TopHeader from "../common/TopHeader";
 import GoUp from "../common/GoUp";
+import "../styles/layout.css";
 
 const Layout = () => {
   return (

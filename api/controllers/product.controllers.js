@@ -131,6 +131,18 @@ export const getProductsByCategory = async (req, res) =>{
 } 
 
 
+// Search products
+export const searchProducts = async (req, res) => {
+    const { searchTerm } = req.body;
+    console.log(searchTerm)
+    try {
+        const [products] = await db.query('SELECT * FROM products WHERE name LIKE ?', [`%${searchTerm}%`]);
+        console.log(products)
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
 
 // Explanation of Enhancements
 // Validation: Input validation ensures the integrity of data being added or updated.
