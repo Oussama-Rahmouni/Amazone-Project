@@ -20,11 +20,11 @@ export const register = async (req, res) => {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const {  email, password, first_name, last_name, phone_number, address, city, state, country, zip_code } = req.body;
+        const {  email, password, name } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const query = 'INSERT INTO users ( email, password, first_name, last_name, phone_number, address, city, state, country, zip_code) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        const values = [ email, hashedPassword, first_name, last_name, phone_number, address, city, state, country, zip_code];
+        const query = 'INSERT INTO users ( email, password, name) VALUES ( ?, ?, ?)';
+        const values = [ email, hashedPassword, name];
 
         const [result] = await db.execute(query, values);
 
