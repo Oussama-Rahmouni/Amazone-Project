@@ -83,3 +83,14 @@ export const removeCartItem = async (req, res) => {
         handleError(error, req, res);
     }
 };
+
+
+export const addShippingAdress = async (req, res) =>{
+    try {
+        console.log("here is the request ", req.body)
+        const user_id = req.user
+        const q = "INSERT INTO orders VALUES (?,?, ?, ?, ?"
+    } catch (error) {
+        handleError(error)
+    }
+} 

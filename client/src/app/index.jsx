@@ -19,10 +19,13 @@ import DashShipping from "../pages/dashboard/DashShipping";
 import DashInbox from "../pages/dashboard/DashInbox";
 import DashUsers from "../pages/dashboard/DashUsers";
 import DashCalendar from "../pages/dashboard/DashCalendar";
+import ShippingView from "../pages/ShippingView";
 
 // Define routes using createBrowserRouter
 const router = createBrowserRouter([
   { path: "register", element: <Register /> },
+  { path: "shipping", element: <ShippingView /> },
+
   {
     path: "/",
     element: <Layout />,
