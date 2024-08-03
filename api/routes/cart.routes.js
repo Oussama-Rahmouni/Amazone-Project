@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/',
     authenticate,
     [
-        body('product_id').isInt({ gt: 0 }).withMessage('Valid product ID is required'),
+        body('id').isInt({ gt: 0 }).withMessage('Valid product ID is required'),
         body('quantity').isInt({ gt: 0 }).withMessage('Quantity must be greater than zero')
     ],
     addItemToCart

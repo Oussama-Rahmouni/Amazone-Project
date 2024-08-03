@@ -5,22 +5,23 @@ import { validationResult } from 'express-validator';
 // Add an item to the cart
 export const addItemToCart = async (req, res) => {
     try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        // const errors = validationResult(req);
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({ errors: errors.array() });
+        // }
 
-        const { product_id, quantity } = req.body;
+        const { id, quantity } = req.body;
+        // console.log("req body ", req.body)
         const user_id = req.user.id;
 
         // Check if the item already exists in the cart
-        const [rows] = await db.execute('SELECT * FROM cart_items WHERE user_id = ? AND product_id = ?', [user_id, product_id]);
+        const [rows] = await db.execute('SELECT * FROM cart_items WHERE user_id = ? AND product_id = ?', [user_id, id]);
         if (rows.length > 0) {
             return res.status(400).json({ message: 'Item already in cart. Update the quantity instead.' });
         }
 
         const query = 'INSERT INTO cart_items (user_id, product_id, quantity) VALUES (?, ?, ?)';
-        const values = [user_id, product_id, quantity];
+        const values = [user_id, id, quantity];
 
         await db.execute(query, values);
 
