@@ -8,8 +8,6 @@ import "../styles/card.css";
 import { Link } from "react-router-dom";
 
 const Card = ({ fourthProductSet }) => {
-  console.log("data fourth is here ", fourthProductSet);
-
   const [products, setProducts] = useState([]);
   const responsiveOptions = [
     {

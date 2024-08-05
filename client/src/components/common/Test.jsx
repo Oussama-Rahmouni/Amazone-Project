@@ -1,14 +1,14 @@
 import Carousel from "react-multi-carousel";
+import Image from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../styles/listCard.css";
-import { Link } from "react-router-dom";
 
-function HomeHeader({ firstProductSet }) {
+function UncontrolledExample() {
   return (
     <Carousel
       additionalTransfrom={0}
       arrows
-      autoPlaySpeed={1000}
+      autoPlaySpeed={3000}
       centerMode={false}
       className=""
       containerClass="container"
@@ -26,8 +26,8 @@ function HomeHeader({ firstProductSet }) {
       responsive={{
         desktop: {
           breakpoint: {
-            max: 2040,
-            min: 1024,
+            max: 1800,
+            min: 1000,
           },
           items: 1,
         },
@@ -55,20 +55,20 @@ function HomeHeader({ firstProductSet }) {
       slidesToSlide={1}
       swipeable
     >
-      {firstProductSet.map((product, index) => (
-        // <Link to={`/product/${product.name}`}>
-        <img
-          src={product.image_url}
-          alt=""
-          style={{
-            width: "120%",
-            height: "500px",
-          }}
-        />
-        // </Link>
-      ))}
+      <img
+        src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+        alt="Descriptive Alt Text"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+        alt="Descriptive Alt Text"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+        alt="Descriptive Alt Text"
+      />
     </Carousel>
   );
 }
 
-export default HomeHeader;
+export default UncontrolledExample;

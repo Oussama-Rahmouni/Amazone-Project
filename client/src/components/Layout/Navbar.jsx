@@ -5,21 +5,27 @@ import amazonLogo from "../../assets/images/logo.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
-import api from "../../services/apiConfig";
 import { useNavigate } from "react-router-dom";
+import { useSearchMutation } from "../../services/search";
 
 const Navbar = () => {
   const [searchTerm, setsearchTerm] = useState("");
   const navigate = useNavigate();
 
-  const searchFunction = async () => {
-    console.log("search : ", searchTerm);
-    try {
-      const result = await api.post("/product/search", { searchTerm });
-      navigate("/allProducts");
-    } catch (error) {
-      console.log("issue happend here", error);
-    }
+  const onSuccess = (data) => {
+    navigate("/all-products", { state: { results: data } });
+  };
+
+  const onError = (error) => {
+    console.error("Search failed: ", error);
+    alert("Search failed. Please try again.");
+  };
+
+  const { mutate, error, isError } = useSearchMutation(onSuccess, onError);
+
+  const searchFunction = () => {
+    console.log("search: ", searchTerm);
+    mutate(searchTerm);
   };
 
   return (
@@ -64,7 +70,10 @@ const Navbar = () => {
             alignItem: "center",
           }}
         >
-          <SearchIcon onClick={searchFunction} />
+          <SearchIcon
+            onClick={searchFunction}
+            style={{ marginTop: "10px", cursor: "pointer" }}
+          />
         </div>
       </div>
       <div className="third-div">

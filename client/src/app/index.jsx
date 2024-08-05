@@ -1,6 +1,6 @@
 // src/router.js
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
-import Layout from "../components/Layout/Layout";
+import HomeLayout from "../components/Layout/Layout";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import Home from "../pages/Home";
@@ -20,15 +20,23 @@ import DashInbox from "../pages/dashboard/DashInbox";
 import DashUsers from "../pages/dashboard/DashUsers";
 import DashCalendar from "../pages/dashboard/DashCalendar";
 import ShippingView from "../pages/ShippingView";
+import UncontrolledExample from "../components/common/Test";
+import AllProducts from "../pages/AllProducts";
+import ProductLayout from "../components/Layout/ProductLayout";
 
 // Define routes using createBrowserRouter
 const router = createBrowserRouter([
   { path: "register", element: <Register /> },
   { path: "shipping", element: <ShippingView /> },
-
+  { path: "car", element: <UncontrolledExample /> },
   {
     path: "/",
-    element: <Layout />,
+    element: <ProductLayout />,
+    children: [{ path: "all-products", element: <AllProducts /> }],
+  },
+  {
+    path: "/",
+    element: <HomeLayout />,
     children: [
       { index: true, element: <Home /> },
       { path: "login", element: <Login /> },
@@ -39,9 +47,11 @@ const router = createBrowserRouter([
       { path: "category/:name", element: <Products /> },
       { path: "products", element: <Products /> },
       { path: "products/:name", element: <ProductDetail /> },
+
       // You can add more nested routes here
     ],
   },
+
   {
     path: "/dashboard",
     element: <DashboardLayout />,

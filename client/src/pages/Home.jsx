@@ -57,13 +57,11 @@ const Home = () => {
   const fifthProductSet = products && products[4] ? products[4][0] : [];
   const sixthProductSet = products && products[5] ? products[5][0] : [];
 
-  console.log("here is our  data ", thirdProductSet);
   return (
     <div className="home-page">
       <div className="tophead">
         <TopHeader />
       </div>
-
       <div className="home-header">
         <HomeHeader firstProductSet={firstProductSet} />
       </div>

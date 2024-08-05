@@ -7,7 +7,7 @@ import TopHeader from "../common/TopHeader";
 import GoUp from "../common/GoUp";
 import "../styles/layout.css";
 
-const Layout = () => {
+const HomeLayout = () => {
   return (
     <>
       <Navbar />
@@ -21,4 +21,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default HomeLayout;
