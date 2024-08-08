@@ -28,6 +28,7 @@
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
     "faker": "^6.6.6",
+    "framer-motion": "^11.3.24",
     "material-react-table": "^2.13.0",
     "primereact": "^10.7.0",
     "react": "^18.3.1",

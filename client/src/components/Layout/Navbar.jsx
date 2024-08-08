@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useSearchMutation } from "../../services/search";
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
 import { allItems } from "../../constants";
+import TopHeader from "../common/TopHeader";
 
 const Navbar = () => {
   const [showAll, setShowAll] = useState(false);
@@ -31,7 +32,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="w-full bg-amazon_blue text-white px-4 py-2 flex items-start gap-4 ">
+      <div className="w-full bg-amazon_blue text-white px-4 py-2 flex items-center gap-4 ">
         <div className="headerHover">
           <img className="w-28 mt-2" src={logo} alt="" /> {/* Adjusted width */}
         </div>
@@ -42,7 +43,7 @@ const Navbar = () => {
             <span className="text-sm font-semibold mt-1 text-white">USA</span>
           </p>
         </div>
-        <div className="h-12 rounded-md flex flex-grow relative">
+        <div className="h-10 rounded-md flex flex-grow relative">
           {" "}
           {/* Adjusted height */}
           <span
@@ -80,8 +81,8 @@ const Navbar = () => {
           />
           <span
             className="w-12 h-full flex items-center justify-center bg-amazon_yellow
-            hover:bg-[#f3a847] duration-300 text-amazon_blue cursor-auto rounded-tr-md
-            rounded-br-md"
+            hover:bg-[#f3a847] duration-300 text-amazon_blue rounded-tr-md
+            rounded-br-md cursor-pointer"
           >
             <SearchIcon />
           </span>
@@ -112,6 +113,7 @@ const Navbar = () => {
           </p>
         </div>
       </div>
+      <TopHeader />
     </div>
   );
 };
