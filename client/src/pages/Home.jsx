@@ -59,9 +59,9 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <div className="tophead">
+      {/* <div className="tophead">
         <TopHeader />
-      </div>
+      </div> */}
       <div className="home-header">
         <HomeHeader firstProductSet={firstProductSet} />
       </div>

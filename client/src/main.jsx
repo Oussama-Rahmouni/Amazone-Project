@@ -5,8 +5,6 @@ import App from "./App.jsx";
 import "./index.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { ThemeProvider } from "./context/ThemeContext";
