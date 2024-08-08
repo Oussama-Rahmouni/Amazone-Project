@@ -9,7 +9,7 @@ import "../styles/layout.css";
 
 const HomeLayout = () => {
   return (
-    <>
+    <div className="font-bodyFont">
       <Navbar />
       <TopHeader />
       <div className="content">
@@ -17,7 +17,7 @@ const HomeLayout = () => {
       </div>
       <GoUp />
       {/* <Footer /> */}
-    </>
+    </div>
   );
 };
 

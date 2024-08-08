@@ -23,12 +23,14 @@ import ShippingView from "../pages/ShippingView";
 import UncontrolledExample from "../components/common/Test";
 import AllProducts from "../pages/AllProducts";
 import ProductLayout from "../components/Layout/ProductLayout";
+import Tasti from "../pages/Tasti";
 
 // Define routes using createBrowserRouter
 const router = createBrowserRouter([
   { path: "register", element: <Register /> },
   { path: "shipping", element: <ShippingView /> },
   { path: "car", element: <UncontrolledExample /> },
+  { path: "tasti", element: <Tasti /> },
   {
     path: "/",
     element: <ProductLayout />,
