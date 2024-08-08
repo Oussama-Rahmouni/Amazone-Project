@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SideContent from "../Layout/SideContent";
 import CloseIcon from "@mui/icons-material/Close";
+import { motion } from "framer-motion";
 
 const TopHeader = () => {
-  const [sidebar, setSidbar] = React.useState(false);
+  const ref = React.useRef();
+  const [sidebar, setSidebar] = React.useState(false);
+
+  useEffect(() => {
+    document.body.addEventListener("click", (e) => {
+      if (e.target.contians(ref.current)) {
+        setSidebar(false);
+      }
+    });
+  }, [ref, sidebar]);
+
   return (
     <div className="w-full px-4 h-[36px] bg-amazon_light text-white flex items-center">
       <ul className="flex justify-center items-center">
         <li
           className="headerHover gap-2 text-sm tracking-wide"
-          onClick={() => setSidbar(true)}
+          onClick={() => setSidebar(true)}
         >
           <MenuIcon />
           All
@@ -28,7 +39,13 @@ const TopHeader = () => {
           bg-opacity-50"
         >
           <div className="w-full h-full relative">
-            <div className="w-[350px] h-full bg-white bordr border-black">
+            <motion.div
+              ref={ref}
+              initial={{ x: -550, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="w-[350px] h-full bg-white border border-black"
+            >
               <div className="w-full bg-amazon_light text-white py-2 px-6 flex items-center gap-4">
                 <AccountCircleIcon />
                 <h3 className="font-titleFont font-bold text-lg tracking-wide">
@@ -62,14 +79,14 @@ const TopHeader = () => {
                 />
               </div>
               <span
-                onClick={() => setSidbar(false)}
-                className="cursor-pointer absolute top-0 left-[360px] w-10 h-10 text-black
-              flex items-center justify-center border bg-gray-200 hover:bg-red-500
-              hover:text-white duration-300"
+                onClick={() => setSidebar(false)}
+                className="cursor-pointer absolute top-0 right-0 w-10 h-10 text-black
+                 flex items-center justify-center border bg-gray-200 hover:bg-red-500
+               hover:text-white duration-300"
               >
                 <CloseIcon />
               </span>
-            </div>
+            </motion.div>
           </div>
         </div>
       )}
