@@ -10,7 +10,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { ThemeProvider } from "./context/ThemeContext";
 import { PrimeReactProvider } from "primereact/api";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { store } from "./redux/store.js";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(

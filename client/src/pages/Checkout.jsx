@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../redux/cartSlice";
+import { clearCart } from "../redux/slices/cartSlice";
 import { useMutation } from "react-query";
 
 const Checkout = () => {

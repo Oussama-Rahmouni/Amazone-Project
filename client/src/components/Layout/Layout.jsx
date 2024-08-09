@@ -11,7 +11,6 @@ const HomeLayout = () => {
   return (
     <div className="font-bodyFont">
       <Navbar />
-      {/* <TopHeader /> */}
       <div className="content">
         <Outlet />
       </div>

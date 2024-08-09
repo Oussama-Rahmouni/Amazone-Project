@@ -62,7 +62,7 @@ const Home = () => {
       {/* <div className="tophead">
         <TopHeader />
       </div> */}
-      <div className="home-header">
+      {/* <div className="home-header">
         <HomeHeader firstProductSet={firstProductSet} />
       </div>
 
@@ -79,9 +79,8 @@ const Home = () => {
 
       <div className="card-container">
         <Card fourthProductSet={fourthProductSet} />
-      </div>
+      </div> 
 
-      {/* 
 
       <div className="firstContainer">
         {cardData.map((data, index) => (
@@ -94,10 +93,11 @@ const Home = () => {
           />
         ))}{" "}
       </div>
-*/}
+
       <div className="list-container2">
         <ListCard2 />
       </div>
+      */}
     </div>
   );
 };
