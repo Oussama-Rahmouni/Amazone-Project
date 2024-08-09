@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/common/Card.jsx";
-import "./styles/home.css";
+// import "./styles/home.css";
 import { useQuery } from "react-query";
 import { cardData } from "./homeData.js";
 import HomeHeader from "../components/common/HomeHeader.jsx";
@@ -59,13 +59,10 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {/* <div className="tophead">
-        <TopHeader />
-      </div> */}
-      {/* <div className="home-header">
+      <div className="home-header ">
         <HomeHeader firstProductSet={firstProductSet} />
       </div>
-
+      {/*
       <div className="categories-container">
         <HomeCategories categories={categories} />
       </div>

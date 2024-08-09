@@ -4,6 +4,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -15,14 +17,16 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <PrimeReactProvider>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <App />
-          </LocalizationProvider>
-        </PrimeReactProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <PrimeReactProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <App />
+            </LocalizationProvider>
+          </PrimeReactProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>
 );

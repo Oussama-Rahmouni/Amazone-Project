@@ -1,15 +1,13 @@
+/*
 .home-page{
     background-color: #E3E6E6 ;
     position: relative;
-    /* display: flex;
-    flex-direction: column; */
+    z-index: 0;
+
 
 }
 
 .firstContainer{
-    /* background-color: aqua; */
-    /* border: 2px solid black; */
-    /* height: 450px; */
     margin-top: -300px;
     display: flex;
     justify-content: space-around;
@@ -17,7 +15,6 @@
     gap: 8px;
     align-items: center;
     width: 100%;
-    /* margin-top: 15px; */
     margin: 5px;
 }
 .tophead{
@@ -28,7 +25,6 @@
     height: 77.5vh;
     z-index: 1; 
     width: 100%;
-    /* border: 1px solid green; */
     margin: 0;
     padding: 0;
 
@@ -37,7 +33,7 @@
 .categories-container {
     display: flex;
     margin-top: -45vh;
-    position: relative; /* Make sure this is positioned */
+    position: relative; 
     z-index: 2; 
     display: flex;
     gap: 10px;
@@ -54,10 +50,9 @@
     margin-top: 10px;
     height: 350px;
     width: 100%;
-    /* border: 1px solid black; */  
 }
 
-.list-carousel{
+ .list-carousel{
     margin-top: 10px;
     height: 350px;
     width: 100%;
@@ -69,6 +64,6 @@
     width: 100%;
 }
 
-
+ */
 
 

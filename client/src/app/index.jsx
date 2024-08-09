@@ -1,7 +1,6 @@
 // src/router.js
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import HomeLayout from "../components/Layout/Layout";
-import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -25,6 +24,8 @@ import AllProducts from "../pages/AllProducts";
 import ProductLayout from "../components/Layout/ProductLayout";
 import Tasti from "../pages/Tasti";
 import Navbar from "../components/Layout/Navbar";
+import Cart from "../pages/Cart";
+import SignleCartItem from "./Test1";
 
 // Define routes using createBrowserRouter
 const router = createBrowserRouter([
@@ -32,6 +33,9 @@ const router = createBrowserRouter([
   { path: "shipping", element: <ShippingView /> },
   { path: "car", element: <UncontrolledExample /> },
   { path: "tasti", element: <Navbar /> },
+  { path: "tasti2", element: <Checkout /> },
+  { path: "tasti3", element: <Cart /> },
+  { path: "tasti4", element: <SignleCartItem /> },
   {
     path: "/",
     element: <ProductLayout />,

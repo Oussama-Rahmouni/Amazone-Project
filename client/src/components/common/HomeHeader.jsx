@@ -2,72 +2,98 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../styles/listCard.css";
 import { Link } from "react-router-dom";
+import React from "react";
+import Slider from "react-slick";
+// testing
+import first from "../../assets/assets/banner/first.jpg";
+import second from "../../assets/assets/banner/second.jpg";
+import third from "../../assets/assets/banner/third.jpg";
+import fourth from "../../assets/assets/banner/fourth.jpg";
+import fifth from "../../assets/assets/banner/fifth.jpg";
+// testing
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={`${className} custom-arrow custom-next`}
+      style={{
+        ...style,
+        display: "flex", // Use flexbox to center the arrow icon
+        alignItems: "center", // Vertically center the arrow
+        justifyContent: "center", // Horizontally center the arrow
+        background: "rgba(0, 0, 0, 0.5)", // Background color of the arrow
+        borderRadius: "50%", // Makes the arrow circular
+        padding: "15px", // Increase padding for height and width
+        right: "15px", // Position from the right side
+        top: "50%", // Vertically center the arrow
+        transform: "translateY(-50%)", // Adjust for perfect centering
+        zIndex: 1, // Ensure the arrow is above other elements
+        cursor: "pointer", // Changes cursor to pointer on hover
+        border: "2px solid transparent", // Initial transparent border
+        transition: "border 0.2s ease", // Smooth transition for border change
+      }}
+      onClick={onClick}
+    >
+      <i className="fas fa-chevron-right text-white"></i>{" "}
+      {/* Icon for the arrow */}
+    </div>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={`${className} custom-arrow custom-prev active: border-white`}
+      style={{
+        ...style,
+        display: "flex", // Use flexbox to center the arrow icon
+        alignItems: "center", // Vertically center the arrow
+        justifyContent: "center", // Horizontally center the arrow
+        background: "rgba(0, 0, 0, 0.5)", // Background color of the arrow
+        borderRadius: "50%", // Makes the arrow circular
+        padding: "15px", // Increase padding for height and width
+        left: "15px", // Position from the left side
+        top: "50%", // Vertically center the arrow
+        transform: "translateY(-50%)", // Adjust for perfect centering
+        zIndex: 1, // Ensure the arrow is above other elements
+        cursor: "pointer", // Changes cursor to pointer on hover
+        border: "2px solid transparent", // Initial transparent border
+        transition: "border 0.2s ease", // Smooth transition for border change
+      }}
+      onClick={onClick}
+    >
+      <i className="fas fa-chevron-left text-white"></i>{" "}
+      {/* Icon for the arrow */}
+    </div>
+  );
+}
 
 function HomeHeader({ firstProductSet }) {
+  const settings = {
+    infinite: true,
+    autoplay: true,
+    fade: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
+
+  const data = [first, second, third, fourth, fifth];
+
   return (
-    <Carousel
-      additionalTransfrom={0}
-      arrows
-      autoPlaySpeed={1000}
-      centerMode={false}
-      className=""
-      containerClass="container"
-      dotListClass=""
-      draggable
-      focusOnSelect={false}
-      infinite
-      itemClass=""
-      keyBoardControl
-      minimumTouchDrag={80}
-      pauseOnHover
-      renderArrowsWhenDisabled={false}
-      renderButtonGroupOutside={false}
-      renderDotsOutside={false}
-      responsive={{
-        desktop: {
-          breakpoint: {
-            max: 2040,
-            min: 1024,
-          },
-          items: 1,
-        },
-        mobile: {
-          breakpoint: {
-            max: 464,
-            min: 0,
-          },
-          items: 1,
-        },
-        tablet: {
-          breakpoint: {
-            max: 1024,
-            min: 464,
-          },
-          items: 1,
-        },
-      }}
-      rewind={false}
-      rewindWithAnimation={false}
-      rtl={false}
-      shouldResetAutoplay
-      showDots
-      sliderClass=""
-      slidesToSlide={1}
-      swipeable
-    >
-      {firstProductSet.map((product, index) => (
-        // <Link to={`/product/${product.name}`}>
-        <img
-          src={product.image_url}
-          alt=""
-          style={{
-            width: "120%",
-            height: "500px",
-          }}
-        />
-        // </Link>
-      ))}
-    </Carousel>
+    <div className="slider-container relative">
+      <Slider {...settings}>
+        {data.map((image, index) => (
+          <div key={index} className="relative">
+            <img src={image} alt={`slide-${index}`} className="w-full" />
+          </div>
+        ))}
+      </Slider>
+    </div>
   );
 }
 
