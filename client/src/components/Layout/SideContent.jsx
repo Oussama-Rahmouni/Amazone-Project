@@ -3,7 +3,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const SideContent = ({ title, one, two, three }) => {
   return (
-    <div className="py-3 border-b-[1px] corder-b-gray-300 ">
+    <div className="py-3 border-b-[1px] corder-b-gray-300 z-30">
       <h3 className="text-lg font-titleFont font-semibold mb-1 px-6">
         {title}
       </h3>

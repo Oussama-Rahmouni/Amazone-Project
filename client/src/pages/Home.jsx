@@ -7,7 +7,6 @@ import HomeHeader from "../components/common/HomeHeader.jsx";
 import HomeCategories from "../components/common/HomeCategories.jsx";
 import ListCards from "../components/common/ListCards.jsx";
 import ListCard2 from "../components/common/ListCard2.jsx";
-import GoUp from "../components/common/GoUp.jsx";
 import TopHeader from "../components/common/TopHeader.jsx";
 import { fetchIdsAndProducts, getCategories } from "../services/homeService.js";
 import ProductsCards from "../components/common/ProductCards.jsx";
@@ -62,11 +61,11 @@ const Home = () => {
       <div className="home-header ">
         <HomeHeader firstProductSet={firstProductSet} />
       </div>
-      {/*
-      <div className="categories-container">
-        <HomeCategories categories={categories} />
-      </div>
 
+      {/* <div className="categories-container">
+        <HomeCategories categories={categories} />
+      </div> */}
+      {/*
       <div className="list-container">
         <ListCards thirdProductSet={thirdProductSet} />
       </div>

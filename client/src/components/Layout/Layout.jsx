@@ -1,11 +1,10 @@
 // src/components/layout/Layout.js
 import React from "react";
 import Navbar from "./Navbar";
-// import Footer from "./Footer";
+import Footer from "./footer/Footer";
 // import "../styles/layout.css";
 import { Outlet } from "react-router-dom";
 import TopHeader from "../common/TopHeader";
-import GoUp from "../common/GoUp";
 
 const HomeLayout = () => {
   return (
@@ -14,7 +13,7 @@ const HomeLayout = () => {
       <div className="retlative z-0">
         <Outlet />
       </div>
-      <GoUp />
+      <Footer />
     </div>
   );
 };

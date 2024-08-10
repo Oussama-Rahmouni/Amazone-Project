@@ -85,11 +85,11 @@ function HomeHeader({ firstProductSet }) {
   const data = [first, second, third, fourth, fifth];
 
   return (
-    <div className="slider-container relative">
+    <div className="slider-container ">
       <Slider {...settings}>
         {data.map((image, index) => (
           <div key={index} className="relative">
-            <img src={image} alt={`slide-${index}`} className="w-full" />
+            <img src={image} alt={`slide-${index}`} className="w-full z-0" />
           </div>
         ))}
       </Slider>
