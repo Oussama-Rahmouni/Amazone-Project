@@ -31,7 +31,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="w-full sticky top-0 z-50">
       <div className="w-full bg-amazon_blue text-white px-4 py-2 flex items-center gap-4 ">
         <div className="headerHover">
           <img className="w-28 mt-2" src={logo} alt="" /> {/* Adjusted width */}

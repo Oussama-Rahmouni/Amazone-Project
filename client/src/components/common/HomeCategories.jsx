@@ -15,7 +15,9 @@ const HomeCategories = ({ categories }) => {
           className="card-image"
         />
       </Link>
-      {category.description && <p>{category.description}</p>}
+      <Link to={`/category/${category.name}`}>
+        <p>See more</p>
+      </Link>
     </div>
   ));
 };

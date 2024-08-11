@@ -83,12 +83,14 @@ const ListCards = ({ thirdProductSet }) => {
       transitionDuration={2000}
     >
       {thirdProductSet?.map((product, index) => (
-        <div className="listCards" key={index}>
+        <div className="listCards border flex flex-col " key={index}>
+          <p>{product.name}</p>
           <Link to={`/product/${product.name}`}>
             <img
               src={product.image_url}
               alt=""
               style={{ height: "330px", width: "450px" }}
+              className="w-full shadow-inner"
             />
           </Link>
         </div>

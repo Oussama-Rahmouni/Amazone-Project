@@ -10,6 +10,7 @@ import ListCard2 from "../components/common/ListCard2.jsx";
 import TopHeader from "../components/common/TopHeader.jsx";
 import { fetchIdsAndProducts, getCategories } from "../services/homeService.js";
 import ProductsCards from "../components/common/ProductCards.jsx";
+import FourthView from "./FourthView.jsx";
 
 const Home = () => {
   const [fetchProducts, setFetchProducts] = useState(true);
@@ -57,25 +58,31 @@ const Home = () => {
   const sixthProductSet = products && products[5] ? products[5][0] : [];
 
   return (
-    <div className="home-page">
-      <div className="home-header ">
+    <div className="bg-[#E3E6E6]">
+      <div className="">
         <HomeHeader firstProductSet={firstProductSet} />
       </div>
 
-      {/* <div className="categories-container">
+      <div className="relative top-[144px] transform -translate-y-1/2  z-20 flex justify-center items-center gap-10 flex-wrap">
         <HomeCategories categories={categories} />
-      </div> */}
-      {/*
-      <div className="list-container">
+      </div>
+      <div className="">jdid jdid jdid jdid </div>
+
+      <div className="">
         <ListCards thirdProductSet={thirdProductSet} />
       </div>
-      <div className="firstContainer">
+      <div className="flex justify-center items-center flex-wrap gap-10 mt-10">
         <ProductsCards secondProductSet={secondProductSet} />
       </div>
+      <div className="px-8 py-2 ">
+        {/* <Card  /> */}
+        <FourthView fourthProductSet={fourthProductSet} />
+      </div>
+      {/*
 
-      <div className="card-container">
-        <Card fourthProductSet={fourthProductSet} />
-      </div> 
+     
+
+     
 
 
       <div className="firstContainer">
