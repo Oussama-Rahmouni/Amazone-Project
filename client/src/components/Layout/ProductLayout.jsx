@@ -10,14 +10,13 @@ import HeaderFilter from "./HeaderFilter";
 const ProductLayout = () => {
   return (
     <div className="product-layout-container">
-      <div className="navbar-layout">
+      <div className="navbar-layout sticky top-0 z-50">
         <Navbar />
-        <TopHeader />
         <HeaderFilter />
       </div>
 
       <div className="product-main-content">
-        <div className="sidebar-layout">
+        <div className="sidebar-layout ">
           <ProductsSidebar />
         </div>
 

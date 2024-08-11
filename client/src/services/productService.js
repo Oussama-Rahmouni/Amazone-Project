@@ -42,3 +42,13 @@ export const getCategoryProducts = async (category) =>{
         console.log("an issue happened while geting categorie data ", error)
     }
 }
+
+export const getAllProducts = async () =>{
+    try {
+        const result = await api.get(`/product`)
+        return result.data
+    } catch (error) {
+        console.log("error in getting all data", error)
+        return error
+    }
+}

@@ -78,13 +78,12 @@ const Home = () => {
         {/* <Card  /> */}
         <FourthView fourthProductSet={fourthProductSet} />
       </div>
+      <div className="px-8 py-2 ">
+        {/* <Card  /> */}
+        <FourthView fourthProductSet={fifthProductSet} />
+      </div>
+
       {/*
-
-     
-
-     
-
-
       <div className="firstContainer">
         {cardData.map((data, index) => (
           <HomeCategories

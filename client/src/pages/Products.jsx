@@ -18,15 +18,23 @@ const Products = () => {
   console.log("our data ", data);
 
   return (
-    <>
-      <div className="products-filter"></div>
-      <div className="products-main">
-        <div className="products-sidebar">sidebar</div>
-        <div className="products-cards">
-          <AllProductsCard data={data} />
+    <div>
+      {data?.map((item) => (
+        <div>
+          <div>
+            <img
+              className="w-52 h-64 object-contain"
+              src={item.image_url}
+              alt=""
+            />
+          </div>
+          <div>
+            <h2>{item.name}</h2>
+            <p>{item.price}</p>
+          </div>
         </div>
-      </div>
-    </>
+      ))}
+    </div>
   );
 };
 
