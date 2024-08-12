@@ -11,7 +11,7 @@ const TopHeader = () => {
 
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
-      if (e.target.contians(ref.current)) {
+      if (e.target.contains(ref.current)) {
         setSidebar(false);
       }
     });

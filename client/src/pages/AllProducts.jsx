@@ -26,7 +26,6 @@ const AllProducts = () => {
     return <div>a problem while getting all products</div>;
   }
 
-  console.log("here ", data);
   return (
     <div className="w-full bg-gray-100 p-4">
       <div className="max-w-screen-2xl mx-auto grid grid-cols-4 gap-10 px-4 bg-[#E3E6E6] py-5">
