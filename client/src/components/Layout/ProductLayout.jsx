@@ -26,7 +26,7 @@ const ProductLayout = () => {
         </div> */}
 
         <div className="product-layout-content">
-          <Outlet />
+          <Outlet context={{ sortOption }} />
         </div>
       </div>
     </div>

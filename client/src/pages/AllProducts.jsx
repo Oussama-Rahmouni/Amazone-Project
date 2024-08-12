@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 import "./styles/products.css";
 import { useQuery } from "react-query";
 import { getAllProducts } from "../services/productService";
@@ -26,10 +26,28 @@ const AllProducts = () => {
     return <div>a problem while getting all products</div>;
   }
 
+  const { sortOption } = useOutletContext();
+
+  // Apply sorting logic
+  const sortedProducts = [...(data || [])].sort((a, b) => {
+    switch (sortOption) {
+      case "priceLowToHigh":
+        return a.price - b.price;
+      case "priceHighToLow":
+        return b.price - a.price;
+      case "avgCustomerReview":
+        return b.rating - a.rating; // Assuming each product has a rating field
+      case "newest":
+        return new Date(b.createdAt) - new Date(a.createdAt); // Assuming each product has a createdAt field
+      default:
+        return 0;
+    }
+  });
+
   return (
     <div className="w-full bg-gray-100 p-4">
       <div className="max-w-screen-2xl mx-auto grid grid-cols-4 gap-10 px-4 bg-[#E3E6E6] py-5">
-        {data?.map((item) => (
+        {sortedProducts?.map((item) => (
           <div
             key={item.id}
             className="bg-white h-auto border-[1px] border-gray-200 py-6 z-30

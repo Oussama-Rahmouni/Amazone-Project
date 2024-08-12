@@ -13,11 +13,11 @@ const HeaderFilter = ({ sortOption, handleSortData }) => {
         value={sortOption}
         onChange={handleSortData}
       >
-        <option value="asc">Price : lower to hight</option>
-        <option value="desc">Price : hight to low</option>
-        <option value="avg">AVG: customer review</option>
-        <option value="latest">Newst </option>
-        <option value="top">Best Sellers </option>
+        <option value="priceLowToHigh">Price : lower to hight</option>
+        <option value="priceHighToLow">Price : hight to low</option>
+        <option value="avgCustomerReview">AVG: customer review</option>
+        <option value="newest">Newst </option>
+        {/* <option value="top">Best Sellers </option> */}
       </select>
     </div>
   );
