@@ -21,7 +21,7 @@
     "@mui/x-charts": "^7.10.0",
     "@mui/x-data-grid": "^7.10.0",
     "@mui/x-date-pickers": "^7.10.0",
-    "@reduxjs/toolkit": "^2.2.6",
+    "@reduxjs/toolkit": "^2.2.7",
     "@table-library/react-table-library": "^4.1.7",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
@@ -48,6 +48,7 @@
     "react-table": "^7.8.0",
     "react-tag-input": "^6.10.3",
     "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
     "sass": "^1.77.8",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.11"

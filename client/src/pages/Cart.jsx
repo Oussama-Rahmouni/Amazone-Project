@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem } from "../redux/slices/cartSlice";
+import { addItem, clearCart, removeItem } from "../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const Cart = () => {
+  const [totalPrice, setTotalPrice] = useState(0);
   const products = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const dispatch = useDispatch();
@@ -11,6 +13,27 @@ const Cart = () => {
   const handleRemoveItem = (id) => {
     dispatch(removeItem(id));
   };
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
+    setTotalPrice((prev) => 0);
+  };
+
+  const handleAddQuantity = (item) => {
+    dispatch(addItem(item));
+  };
+
+  const handleReduceQuantity = (id) => {
+    dispatch(removeItem(id));
+  };
+
+  useEffect(() => {
+    let total = 0;
+    products.map((item) => {
+      total += item.price * item.quantity;
+      return setTotalPrice(total);
+    });
+  }, [products]);
 
   return (
     <div className="w-full bg-gray-100 p-4">
@@ -24,11 +47,11 @@ const Cart = () => {
             {products.map((item) => (
               <div
                 key={item.id}
-                className="w-full border-b-[1px] border-b-gray-300 p-4 flex items-center gap-6"
+                className="w-full border-b-[1px] border-b-gray-300 p-4 flex items-start  gap-6"
               >
-                <div className="w-1/5">
+                <div className="w-2/5">
                   <img
-                    className="w-full h-44 object-contain"
+                    className=" h-44 object-contain"
                     src={item.image}
                     alt=""
                   />
@@ -46,28 +69,73 @@ const Cart = () => {
                   >
                     <p className="">Quantity</p>
                     <p
+                      onClick={() => handleReduceQuantity(item.id)}
                       className="cursor-pointer bg-gray-200 px-1 rounded-md 
-                    hover:bg-gray-400 duration-300"
+                      hover:bg-gray-400 duration-300"
                     >
                       -
                     </p>
                     <p className="">{item.quantity}</p>
+
                     <p
+                      onClick={() => handleAddQuantity(item)}
                       className="cursor-pointer bg-gray-200 px-1 rounded-md 
-                    hover:bg-gray-400 duration-300"
+                      hover:bg-gray-400 duration-300"
                     >
                       +
                     </p>
                   </div>
-                  <button className="bg-red-500 w-36 py-1 rounded-lg text-white mt-2 hover:bg-red-700 active:bg-red-900 duration-300">
+                  <button
+                    onClick={() => handleRemoveItem(item.id)}
+                    className="bg-red-500 w-36 py-1 rounded-lg text-white mt-2 hover:bg-red-700 active:bg-red-900 duration-300"
+                  >
                     Delete Item
                   </button>
+                </div>
+
+                <div>
+                  <p className="text-lg font-titleFont font-semibold ">
+                    {item.price * item.quantity}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
+          <div className="w-full py-2">
+            <button
+              onClick={handleClearCart}
+              className="px-10 py-2 bg-red-500 hover:bg-red-600 active:bg-red-500
+            text-white rounded-lg font-titleFont font-semibold text-lg -tracking-wide"
+            >
+              Clear Cart
+            </button>
+          </div>
         </div>
-        <div className="w-full h-full bg-white col-span-1"></div>
+        <div className="w-full h-full bg-white col-span-1 flex flex-col justify-start items-center p-4">
+          <div>
+            <p className="flex gap-2 items-start text-sm">
+              <span>
+                <CheckCircleIcon className="bg-white text-green-500 rounded-full" />
+              </span>
+              Your order qualifies for Free Shipping choose and checkout , See
+              details ...
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold px-10 py1 flex items-center justify-center">
+              Total:{" "}
+              <span className="text-lg font-bodyFont">${totalPrice}</span>
+            </p>
+          </div>
+          <button
+            className=" w-full font-titleFont font-medium text-base bg-gradient-to-tr
+          from-yellow-400 to-yellow-200 border hover:from-yellow-300 hover:to-yellow-50
+          border-yellow-500 hover:border-yellow-700 active:bg-gradient-to-bl active:from-yellow-400
+          active:to-yellow-500 duration-200 py-1.5 rounded md mt-3"
+          >
+            Proceed to Pay
+          </button>
+        </div>
       </div>
     </div>
   );

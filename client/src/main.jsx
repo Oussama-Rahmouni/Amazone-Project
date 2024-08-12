@@ -11,7 +11,9 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { ThemeProvider } from "./context/ThemeContext";
 import { PrimeReactProvider } from "primereact/api";
 import { Provider } from "react-redux";
-import { store } from "./redux/store.js";
+import { store, persistor } from "./redux/store.js";
+import { PersistGate } from "redux-persist/integration/react";
+
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -21,7 +23,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <ThemeProvider>
           <PrimeReactProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <App />
+              <PersistGate loading={"loading"} persistor={persistor}>
+                <App />
+              </PersistGate>
             </LocalizationProvider>
           </PrimeReactProvider>
         </ThemeProvider>

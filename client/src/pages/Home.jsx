@@ -63,7 +63,7 @@ const Home = () => {
         <HomeHeader firstProductSet={firstProductSet} />
       </div>
 
-      <div className="relative top-[144px] transform -translate-y-1/2  z-20 flex justify-center items-center gap-10 flex-wrap">
+      <div className="relative top-[184px] transform -translate-y-1/2  z-20 flex justify-center items-center gap-10 flex-wrap">
         <HomeCategories categories={categories} />
       </div>
       <div className="">jdid jdid jdid jdid </div>
