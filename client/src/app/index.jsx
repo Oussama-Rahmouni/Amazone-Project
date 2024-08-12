@@ -34,7 +34,6 @@ const router = createBrowserRouter([
   { path: "car", element: <UncontrolledExample /> },
   { path: "tasti", element: <Navbar /> },
   { path: "tasti2", element: <Checkout /> },
-  { path: "tasti3", element: <Cart /> },
   { path: "tasti4", element: <SignleCartItem /> },
   {
     path: "/",
@@ -54,6 +53,7 @@ const router = createBrowserRouter([
       { path: "category/:name", element: <Products /> },
       { path: "products", element: <Products /> },
       { path: "products/:name", element: <ProductDetail /> },
+      { path: "tasti3", element: <Cart /> },
 
       // You can add more nested routes here
     ],

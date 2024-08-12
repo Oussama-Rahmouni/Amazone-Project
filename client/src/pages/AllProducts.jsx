@@ -90,6 +90,7 @@ const AllProducts = () => {
                     title: item.name,
                     description: item.description,
                     price: item.price,
+                    image: item.image_url,
                   })
                 )
               }
