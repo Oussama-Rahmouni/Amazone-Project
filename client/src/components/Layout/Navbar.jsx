@@ -8,11 +8,14 @@ import { useSearchMutation } from "../../services/search";
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
 import { allItems } from "../../constants";
 import TopHeader from "../common/TopHeader";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [showAll, setShowAll] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const products = useSelector((state) => state.cart.items);
+  console.log("hay stae", products);
 
   const onSuccess = (data) => {
     navigate("/all-products", { state: { results: data } });
@@ -108,7 +111,7 @@ const Navbar = () => {
               className="absolute text-xs top-0 left-6 font-semibold p-1 h-4 bg-[#f3a847]
               text-amazon_blue rounded-full flex justify-center items-center"
             >
-              0
+              {products.length > 0 ? products.length : 0}
             </span>
           </p>
         </div>

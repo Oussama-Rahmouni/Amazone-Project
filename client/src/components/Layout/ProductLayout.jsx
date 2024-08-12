@@ -16,9 +16,9 @@ const ProductLayout = () => {
       </div>
 
       <div className="product-main-content">
-        <div className="sidebar-layout ">
+        {/* <div className="sidebar-layout ">
           <ProductsSidebar />
-        </div>
+        </div> */}
 
         <div className="product-layout-content">
           <Outlet />

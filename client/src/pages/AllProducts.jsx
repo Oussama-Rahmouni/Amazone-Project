@@ -8,8 +8,11 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/slices/cartSlice";
 
 const AllProducts = () => {
+  const dispatch = useDispatch();
   const { loading, data, error } = useQuery({
     queryKey: ["all products"],
     queryFn: getAllProducts,
@@ -22,8 +25,6 @@ const AllProducts = () => {
   if (error) {
     return <div>a problem while getting all products</div>;
   }
-
-  console.log("hahiya ", data);
 
   return (
     <div className="max-w-screen-2xl mx-auto grid grid-cols-4 gap-10 px-4 bg-[#E3E6E6] py-5">
@@ -82,6 +83,16 @@ const AllProducts = () => {
               </div>
             </div>
             <button
+              onClick={() =>
+                dispatch(
+                  addItem({
+                    id: item.id,
+                    title: item.name,
+                    description: item.description,
+                    price: item.price,
+                  })
+                )
+              }
               className="w-full font-titleFont font-medium text-base bg-gradient-to-tr
             from-yellow-400 to-yellow-200 border hover:from-yellow-300 hover:to-yellow-500 
             border-yellow-500 hover:border-yellow-700 active:bg-gradient-to-bl
