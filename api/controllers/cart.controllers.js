@@ -94,3 +94,21 @@ export const addShippingAdress = async (req, res) =>{
         handleError(error)
     }
 } 
+
+export const addItemsToCart = async (req, res) =>{
+    const id = req.user.id ;
+    const products = req.body.products
+    console.log("id ", id)
+    console.log("data , ", products)
+    try {
+        const q = "INSERT INTO cart_items (user_id, product_id, quantity) VALUES ( ?, ?, ?)"
+        products.map(async (item)=>{
+            return await db.execute(q, [id, item.id, item.quantity])
+        })
+
+        res.status(201).json({message:"items added to cart succeffully", redirect:"/shipping"})
+
+    } catch (error) {
+        handleError(error)
+    }
+}

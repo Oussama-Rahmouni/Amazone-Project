@@ -1,6 +1,6 @@
 import express from 'express';
 import { body, param } from 'express-validator';
-import { addItemToCart, getCartItems, updateCartItemQuantity, removeCartItem, addShippingAdress } from '../controllers/cart.controllers.js';
+import { addItemToCart, getCartItems, updateCartItemQuantity, removeCartItem, addShippingAdress, addItemsToCart } from '../controllers/cart.controllers.js';
 import authenticate from '../middlewares/authenticate.js';
 
 const router = express.Router();
@@ -37,5 +37,6 @@ router.delete('/:id',
 );
 
 router.post('/shipping', addShippingAdress)
+router.post('/add', authenticate, addItemsToCart)
 
 export default router;

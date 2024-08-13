@@ -27,7 +27,7 @@ const Home = () => {
     queryKey: "getItemsIdsForHomePage",
     queryFn: fetchIdsAndProducts,
     enabled: fetchProducts,
-    onSettled: () => setFetchProducts(false), // Reset to false after fetching
+    onSettled: () => setFetchProducts(false),
   });
 
   const {
@@ -38,7 +38,7 @@ const Home = () => {
     queryKey: "fetchCategories",
     queryFn: getCategories,
     enabled: fetchProducts,
-    onSettled: () => setFetchProducts(false), // Reset to false after fetching
+    onSettled: () => setFetchProducts(false),
   });
 
   // Conditional rendering for loading and error states

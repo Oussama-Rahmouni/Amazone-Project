@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { addItem, clearCart, removeItem } from "../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useAddToCart } from "../services/cartService";
 
 const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const products = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const dispatch = useDispatch();
+  const { mutateAsync } = useAddToCart();
 
   const handleRemoveItem = (id) => {
     dispatch(removeItem(id));
@@ -25,6 +27,10 @@ const Cart = () => {
 
   const handleReduceQuantity = (id) => {
     dispatch(removeItem(id));
+  };
+
+  const handleProceedToPay = () => {
+    mutateAsync(products);
   };
 
   useEffect(() => {
@@ -129,6 +135,7 @@ const Cart = () => {
               </p>
             </div>
             <button
+              onClick={handleProceedToPay}
               className=" w-full font-titleFont font-medium text-base bg-gradient-to-tr
           from-yellow-400 to-yellow-200 border hover:from-yellow-300 hover:to-yellow-50
           border-yellow-500 hover:border-yellow-700 active:bg-gradient-to-bl active:from-yellow-400

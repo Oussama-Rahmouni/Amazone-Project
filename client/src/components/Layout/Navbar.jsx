@@ -15,7 +15,6 @@ const Navbar = () => {
   const [showAll, setShowAll] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { user, loading } = useAuth();
-  console.log("user ", user);
 
   const navigate = useNavigate();
   const products = useSelector((state) => state.cart.items);
