@@ -7,7 +7,7 @@ import crypto from 'crypto';
 
 // Utility function to create a token
 const createToken = (user) => {
-    return jwt.sign({ id: user.id, email: user.email, role: user.role }, process.env.JWT_SECRET, {
+    return jwt.sign({ id: user.id, name:user.name, email: user.email, role: user.role }, process.env.JWT_SECRET, {
         expiresIn: '1h',
     });
 };
@@ -30,6 +30,7 @@ export const register = async (req, res) => {
 
         const user = {
             id: result.insertId,
+            name:name,
             email :email,
             role : 'client'
         };

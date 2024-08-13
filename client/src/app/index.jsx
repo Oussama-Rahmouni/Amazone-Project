@@ -29,33 +29,33 @@ import SignleCartItem from "./Test1";
 
 // Define routes using createBrowserRouter
 const router = createBrowserRouter([
-  { path: "register", element: <Register /> },
-  { path: "shipping", element: <ShippingView /> },
   { path: "car", element: <UncontrolledExample /> },
   { path: "tasti", element: <Navbar /> },
   { path: "tasti2", element: <Checkout /> },
   { path: "tasti4", element: <SignleCartItem /> },
+  { path: "register", element: <Register /> },
+
   {
     path: "/",
     element: <ProductLayout />,
     children: [{ path: "all-products", element: <AllProducts /> }],
   },
+
   {
     path: "/",
     element: <HomeLayout />,
     children: [
       { index: true, element: <Home /> },
+      { path: "category/:name", element: <Products /> },
       { path: "login", element: <Login /> },
+      { path: "products", element: <Products /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout /> },
       { path: "order", element: <OrderSummary /> },
       { path: "profile", element: <Profile /> },
-      { path: "category/:name", element: <Products /> },
-      { path: "products", element: <Products /> },
       { path: "products/:name", element: <ProductDetail /> },
       { path: "tasti3", element: <Cart /> },
-
-      // You can add more nested routes here
+      { path: "shipping", element: <ShippingView /> },
     ],
   },
 
@@ -73,7 +73,6 @@ const router = createBrowserRouter([
       { path: "calendar", element: <DashCalendar /> },
     ],
   },
-  // Other top-level routes that might not use the common layout can be added here
 ]);
 
 export default router;

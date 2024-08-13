@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/apiConfig';
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
@@ -9,8 +9,8 @@ const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/auth/check', { withCredentials: true });
-        setUser(response.data.user);
+        const response = await api.get('/verify');
+        setUser(response.data.decoded);
       } catch (error) {
         setUser(null);
       } finally {

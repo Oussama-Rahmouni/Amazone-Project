@@ -25,7 +25,6 @@ function SamplePrevArrow(props) {
 }
 
 const FourthView = ({ fourthProductSet }) => {
-  console.log("hahom ", fourthProductSet);
   const settings = {
     dots: true,
     infinite: true,

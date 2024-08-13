@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/login.css";
 import logo from "../assets/images/amazon-logo.png";
 import { Link } from "react-router-dom";
@@ -7,30 +7,32 @@ import api from "../services/apiConfig";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = async (data) => {
     if (data.password !== data.re_password) {
       alert("passwords are not identical");
     }
     try {
       const result = await api.post("/auth/register", data);
-      // axios.post("http//localhost:5000/api/auth/register")
       if (result.status == 201) {
         navigate("/");
       }
     } catch (error) {
       console.log("here is the issue", error);
+      setError(error);
     }
   };
 
   return (
     <div className="register-container">
+      {error && <h3 style={{ color: "red" }}>{error.message}</h3>}
       <div className="register-upper">
         <img src={logo} alt="" style={{ width: "105px", height: "32px" }} />
       </div>
