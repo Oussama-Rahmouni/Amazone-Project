@@ -72,7 +72,7 @@ export const login = async (req, res) => {
 
         res.cookie('token', token, { httpOnly: true });
 
-        res.status(200).json({ message: 'Login successful'});
+        res.status(200).json({ message: 'Login successful' , redirect:"/cart"});
     } catch (error) {
         handleError(error, req, res);
     }

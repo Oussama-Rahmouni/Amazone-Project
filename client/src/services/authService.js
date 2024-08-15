@@ -1,6 +1,7 @@
 // src/services/authService.js
+import { useNavigate } from 'react-router-dom';
 import api from './apiConfig';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from 'react-query';
 
 // Function to perform user login
 export const loginUser = async (credentials) => {
@@ -10,9 +11,12 @@ export const loginUser = async (credentials) => {
 
 // Use React Query's useMutation for login to handle side effects and state management.
 export const useLoginUser = () => {
+    const navigate = useNavigate()
+    
     return useMutation(loginUser, {
         onSuccess: (data) => {
             console.log('Login successful', data);
+            navigate(data.redirect)
             // Optionally save the login data to local storage or context
         },
         onError: (error) => {

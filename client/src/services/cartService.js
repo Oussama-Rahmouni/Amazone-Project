@@ -10,17 +10,12 @@ const addToCart = async ({ products, user, loading, navigate, dispatch }) => {
         console.log('Still loading...');
         return;
     }
-    console.log("reached here")
     // If the user is not logged in, redirect to the login page
     if (!user) {
-        dispatch(saveIntendedRoute('/shipping')); // Save the intended route
+        dispatch(saveIntendedRoute('/cart')); // Save the intended route
         navigate('/login');  // Redirect to login
         return;
     }
-
-    console.log("reached again")
-
-
     // If the user is logged in, proceed to add to cart
     const result = await api.post("/cart/add", { products });
     return result.data;

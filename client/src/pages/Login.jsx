@@ -1,23 +1,30 @@
 // src/pages/SignIn.js
 import React, { useState } from "react";
 import "./styles/login.css";
+import { useForm } from "react-hook-form";
+import { useLoginUser } from "../services/authService";
 
 const Login = () => {
-  const [input, setInput] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
+  const { mutateAsync } = useLoginUser();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitting:", input);
-    // Add logic to handle sign in here
+  const onSubmit = (data) => {
+    console.log("Submitting:", data);
+    mutateAsync(data);
   };
 
   return (
     <div className="signin-container">
-      <form className="signin-form" onSubmit={handleSubmit}>
+      <form
+        className="signin-form"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
         <img
           src="/path/to/amazon-logo.png"
           alt="Amazon Logo"
@@ -25,12 +32,10 @@ const Login = () => {
         />
         <h1>Sign in</h1>
         <label htmlFor="email">Email or mobile phone number</label>
-        <input
-          type="text"
-          id="email"
-          value={input}
-          onChange={handleInputChange}
-        />
+        <input type="text" id="email" {...register("email")} />
+
+        <label htmlFor="password">Password </label>
+        <input type="password" id="password" {...register("password")} />
         <button type="submit">Continue</button>
         <p>
           By continuing, you agree to Amazon's{" "}
