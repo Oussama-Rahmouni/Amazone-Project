@@ -1,5 +1,4 @@
-// src/router.js
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "../components/Layout/Layout";
 import Checkout from "../pages/Checkout";
 import Home from "../pages/Home";
@@ -19,26 +18,22 @@ import DashInbox from "../pages/dashboard/DashInbox";
 import DashUsers from "../pages/dashboard/DashUsers";
 import DashCalendar from "../pages/dashboard/DashCalendar";
 import ShippingView from "../pages/ShippingView";
-import UncontrolledExample from "../components/common/Test";
 import AllProducts from "../pages/AllProducts";
 import ProductLayout from "../components/Layout/ProductLayout";
-import Tasti from "../pages/Tasti";
-import Navbar from "../components/Layout/Navbar";
 import Cart from "../pages/Cart";
-import SignleCartItem from "./Test1";
 
-// Define routes using createBrowserRouter
 const router = createBrowserRouter([
-  { path: "car", element: <UncontrolledExample /> },
-  { path: "tasti", element: <Navbar /> },
-  { path: "tasti2", element: <Checkout /> },
-  { path: "tasti4", element: <SignleCartItem /> },
+  { path: "login", element: <Login /> },
   { path: "register", element: <Register /> },
 
   {
     path: "/",
     element: <ProductLayout />,
-    children: [{ path: "all-products", element: <AllProducts /> }],
+    children: [
+      { path: "all-products", element: <AllProducts /> },
+      { path: "category/:name", element: <Products /> }, //missing sidebar design
+      { path: "product/:name", element: <ProductDetail /> }, // missing the design and the logic
+    ],
   },
 
   {
@@ -46,15 +41,10 @@ const router = createBrowserRouter([
     element: <HomeLayout />,
     children: [
       { index: true, element: <Home /> },
-      { path: "category/:name", element: <Products /> },
-      { path: "login", element: <Login /> },
-      { path: "products", element: <Products /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout /> },
       { path: "order", element: <OrderSummary /> },
       { path: "profile", element: <Profile /> },
-      { path: "products/:name", element: <ProductDetail /> },
-      { path: "tasti3", element: <Cart /> },
       { path: "shipping", element: <ShippingView /> },
     ],
   },

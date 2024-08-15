@@ -1,7 +1,6 @@
 import express from 'express';
 import jwt from "jsonwebtoken"
 import dotenv from 'dotenv'
-import handleError from '../utils/handleError.js'
 
 const router = express.Router();
 dotenv.config()
@@ -16,8 +15,8 @@ router.get('/', async (req, res) =>{
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
          res.status(200).json({decoded})
      } catch (error) {
-        handleError(error)
-     }
+         res.status(500).json({error})
+    }
 } );
 
 

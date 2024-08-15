@@ -4,8 +4,10 @@ import { addItem, clearCart, removeItem } from "../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useAddToCart } from "../services/cartService";
+import { useOutletContext } from "react-router-dom";
 
 const Cart = () => {
+  const { user, loading } = useOutletContext();
   const [totalPrice, setTotalPrice] = useState(0);
   const products = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
@@ -30,7 +32,7 @@ const Cart = () => {
   };
 
   const handleProceedToPay = () => {
-    mutateAsync(products);
+    mutateAsync({ products, user, loading });
   };
 
   useEffect(() => {

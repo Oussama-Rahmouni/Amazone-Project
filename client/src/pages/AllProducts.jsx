@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
 import "./styles/products.css";
 import { useQuery } from "react-query";
-import { getAllProducts } from "../services/productService";
+import { getAllProducts } from "../services/productService.js";
 import StarIcon from "@mui/icons-material/Star";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";

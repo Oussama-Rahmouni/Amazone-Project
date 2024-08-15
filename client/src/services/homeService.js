@@ -9,20 +9,6 @@ export const getCategories = async () => {
     }
 };
 
-export const searchProducts = async (searchTerm, categoryFilter = '') => {
-    try {
-        const response = await api.get('/products/search', {
-            params: {
-                q: searchTerm,
-                category: categoryFilter
-            }
-        });
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-};
-
 
 export async function fetchIdsAndProducts() {
     try {

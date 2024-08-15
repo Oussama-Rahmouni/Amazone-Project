@@ -1,4 +1,5 @@
 import db from '../config/db.js';
+import handleError from '../utils/handleError.js'
 
 // Get product by ID
 export const getProduct = async (req, res) => {
@@ -10,7 +11,7 @@ export const getProduct = async (req, res) => {
         }
         res.json(product[0]);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        handleError(error)
     }
 };
 
@@ -20,7 +21,7 @@ export const getProducts = async (req, res) => {
         const [products] = await db.query('SELECT * FROM products');
         res.json(products);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        handleError(error)
     }
 };
 
@@ -31,7 +32,7 @@ export const searchProducts = async (req, res) => {
         const [products] = await db.query('SELECT * FROM products WHERE name LIKE ?', [`%${query}%`]);
         res.json(products);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        handleError(error)
     }
 };
 
@@ -42,7 +43,7 @@ export const filterProducts = async (req, res) => {
         const [products] = await db.query('SELECT * FROM products WHERE category_id = (SELECT id FROM categories WHERE name = ?)', [category]);
         res.json(products);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        handleError(error)
     }
 };
 
@@ -51,7 +52,7 @@ export const getCategories = async (req, res) => {
     try {
         const [categories] = await db.query('SELECT * FROM categories');        res.json(categories);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        handleError(error)
     }
 };
 
@@ -64,7 +65,7 @@ export const getItemIdsForHomePage = async (req, res) => {
         }
         res.status(200).json(result);
     } catch (error) {
-        console.error('Error in getItemIds:', error);
+        handleError(error)
         
     }
 }
@@ -80,7 +81,6 @@ export const getHomProducts = async (req, res) => {
         const products = await db.query(query, ids); // Execute the parameterized query        
         res.json(products);
     } catch (error) {
-        console.error("Error in homProducts:", error);
-        res.status(500).send("Internal server error");
+        handleError(error)
     }
 };

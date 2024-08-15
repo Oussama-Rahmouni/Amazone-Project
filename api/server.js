@@ -38,7 +38,7 @@ const limiter = rateLimit({
     message: 'Too many requests from this IP, please try again after 15 minutes'
 });
 
-app.use(limiter);
+// app.use(limiter);
 app.use(morgan('dev')); 
 app.use(helmet()); 
 app.use(compression()); 

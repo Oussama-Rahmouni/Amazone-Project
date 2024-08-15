@@ -1,4 +1,5 @@
 export const allItems = [
+    { id: 0, title: "All" },
     { id: 1, title: "Automotive" },
     { id: 2, title: "Baby" },
     { id: 3, title: "Beauty & Personal Care" },

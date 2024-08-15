@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Button } from "primereact/button";
 import { Carousel } from "primereact/carousel";
 import { Tag } from "primereact/tag";
-import { ProductService } from "../../services/ProductService";
 import "../styles/card.css";
 import { Link } from "react-router-dom";
 

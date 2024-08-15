@@ -98,8 +98,6 @@ export const addShippingAdress = async (req, res) =>{
 export const addItemsToCart = async (req, res) =>{
     const id = req.user.id ;
     const products = req.body.products
-    console.log("id ", id)
-    console.log("data , ", products)
     try {
         const q = "INSERT INTO cart_items (user_id, product_id, quantity) VALUES ( ?, ?, ?)"
         products.map(async (item)=>{

@@ -9,12 +9,11 @@ import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined
 import { allItems } from "../../constants";
 import TopHeader from "../common/TopHeader";
 import { useSelector } from "react-redux";
-import useAuth from "../../hooks/useAuth";
 
-const Navbar = () => {
+const Navbar = ({ user, loading }) => {
   const [showAll, setShowAll] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const { user, loading } = useAuth();
+  const [categoryChoice, setCategoryChoice] = useState("All");
 
   const navigate = useNavigate();
   const products = useSelector((state) => state.cart.items);
@@ -30,7 +29,7 @@ const Navbar = () => {
 
   const { mutate, error, isError } = useSearchMutation(onSuccess, onError);
 
-  const searchFunction = () => {
+  const handleSearch = () => {
     console.log("search: ", searchTerm);
     mutate(searchTerm);
   };
@@ -54,11 +53,11 @@ const Navbar = () => {
         <div className="h-10 rounded-md flex flex-grow relative">
           <span
             onClick={() => setShowAll(!showAll)}
-            className="w-14 h-full bg-gray-200 hover:bg-gray-300 border-2 cursor-pointer
+            className="w-22 h-full bg-gray-200 hover:bg-gray-300 border-2 cursor-pointer
             duration-300 text-sm text-amazon_blue font-titleFont flex items-center 
             justify-center rounded-tl-md rounded-bl-md"
           >
-            All <ArrowDropDownOutlinedIcon />
+            {categoryChoice} <ArrowDropDownOutlinedIcon />
           </span>
           {showAll && (
             <div>
@@ -70,6 +69,7 @@ const Navbar = () => {
                 {allItems.map((item, index) => (
                   <li
                     key={item.id}
+                    onClick={(e) => setCategoryChoice(item.title)}
                     className="text-sm tracking-wide font-titleFont border-b-[1px]
                     border-b-transparent hover:border-b-amazon_blue cursor-pointer duration-200"
                   >
@@ -86,6 +86,7 @@ const Navbar = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <span
+            onClick={handleSearch}
             className="w-12 h-full flex items-center justify-center bg-amazon_yellow
             hover:bg-[#f3a847] duration-300 text-amazon_blue rounded-tr-md
             rounded-br-md cursor-pointer"
