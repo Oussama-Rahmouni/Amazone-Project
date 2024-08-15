@@ -42,3 +42,28 @@ export const useAddToCart = () => {
         }
     });
 }
+
+
+const onSuccess = async (data) => {
+    console.log("here")
+    navigate("/");
+  };
+  
+  const onError = async (data) => {
+    alert("something worng happend");
+  };
+
+  const addShippingAddress = async (addressData) => {
+    console.log("hay l'adressù ", addressData)
+    const response = await api.post("/cart/shipping", addressData);
+    console.log("hay response ", response)
+    return response.data;
+  };
+
+export const useAddShippingAddress = () =>{
+    console.log("the use state")
+    return useMutation(addShippingAddress,{
+        onSuccess,
+        onError
+    })
+}

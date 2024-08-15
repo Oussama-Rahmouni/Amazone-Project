@@ -1,18 +1,21 @@
 import React from "react";
 import "./styles/dashboard.css"; // Importing the CSS file for styling
 import { useForm } from "react-hook-form";
-import api from "../services/apiConfig";
+import { useAddShippingAddress } from "../services/cartService";
 
 const ShippingView = () => {
-  const { handleSubmit, register, formstate: erro } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+
+  const { mutateAsync } = useAddShippingAddress();
 
   const onSubmit = async (data) => {
-    try {
-      const result = await api.post("/cart/shipping", data);
-    } catch (error) {
-      console.log("issue in putting shipping adress", error);
-    }
+    mutateAsync(data);
   };
+
   return (
     <div className="shipping-view-container">
       <div className="shipping-form">
@@ -20,63 +23,120 @@ const ShippingView = () => {
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className="form-group">
             <label>Country/Region</label>
-            <select {...register("country")}>
+            <select
+              {...register("country", { required: "Country is required" })}
+            >
+              <option value="">Select a country</option>
               <option value="usa">United States</option>
+              <option value="canada">Canada</option>
+              <option value="uk">United Kingdom</option>
+              <option value="germany">Germany</option>
+              <option value="france">France</option>
+              <option value="australia">Australia</option>
+              <option value="japan">Japan</option>
+              <option value="india">India</option>
             </select>
+            {errors.country && (
+              <span className="error-message">{errors.country.message}</span>
+            )}
           </div>
           <div className="form-group">
             <label>Full name (First and Last name)</label>
             <input
               type="text"
               placeholder="Enter your name"
-              {...register("name")}
+              {...register("name", { required: "Full name is required" })}
             />
+            {errors.name && (
+              <span className="error-message">{errors.name.message}</span>
+            )}
           </div>
           <div className="form-group">
             <label>Phone number</label>
             <input
               type="tel"
               placeholder="Enter your phone number"
-              {...register("phoneNumber")}
+              {...register("phoneNumber", {
+                required: "Phone number is required",
+              })}
             />
+            {errors.phoneNumber && (
+              <span className="error-message">
+                {errors.phoneNumber.message}
+              </span>
+            )}
           </div>
           <div className="form-group">
             <label>Address</label>
-            <input type="text" placeholder="Street address or P.O. Box" />
+            <input
+              type="text"
+              placeholder="Street address or P.O. Box"
+              {...register("street", {
+                required: "Street address is required",
+              })}
+            />
+            {errors.street && (
+              <span className="error-message">{errors.street.message}</span>
+            )}
             <input
               type="text"
               placeholder="Apt, suite, unit, building, floor, etc."
-              {...register("street")}
+              {...register("addressLine2")}
             />
           </div>
           <div className="form-group">
             <label>City</label>
-            <input type="text" placeholder="City" {...register("city")} />
+            <input
+              type="text"
+              placeholder="City"
+              {...register("city", { required: "City is required" })}
+            />
+            {errors.city && (
+              <span className="error-message">{errors.city.message}</span>
+            )}
           </div>
           <div className="form-group half-width">
             <label>State</label>
-            <select {...register("state")}>
-              <option value={"state1"}>state 1</option>
-              <option value={"state2"}>state 2</option>
+            <select {...register("state", { required: "State is required" })}>
+              <option value="">Select a state</option>
+              <option value={"state1"}>State 1</option>
+              <option value={"state2"}>State 2</option>
             </select>
+            {errors.state && (
+              <span className="error-message">{errors.state.message}</span>
+            )}
           </div>
           <div className="form-group half-width">
             <label>ZIP Code</label>
-            <input type="text" placeholder="ZIP Code" {...register("zip")} />
+            <input
+              type="text"
+              placeholder="ZIP Code"
+              {...register("zip", { required: "ZIP Code is required" })}
+            />
+            {errors.zip && (
+              <span className="error-message">{errors.zip.message}</span>
+            )}
           </div>
           <div className="form-group checkbox-group">
             <input
               type="checkbox"
               id="default-address"
-              {...register("checkbox")}
+              {...register("defaultAddress")}
             />
             <label htmlFor="default-address">
               Make this my default address
             </label>
           </div>
-          <button type="submit">Use this address</button>
+          <button
+            className="border bg-yellow-400 hover:bg-yellow-600 h-10 rounded-md	color-white"
+            type="submit"
+          >
+            proceed to payment
+            {/* {isLoading ? "Processing..." : "Proceed to Payment"} */}
+          </button>
         </form>
       </div>
+
       <div className="order-summary">
         <h2>Checkout (1 item)</h2>
         <div className="summary-box">

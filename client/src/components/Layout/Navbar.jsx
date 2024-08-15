@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/assets/logo.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -9,12 +9,14 @@ import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined
 import { allItems } from "../../constants";
 import TopHeader from "../common/TopHeader";
 import { useSelector } from "react-redux";
+import api from "../../services/apiConfig";
 
 const Navbar = ({ user, loading }) => {
   const [showAll, setShowAll] = useState(false);
+  const [showUser, seShowUser] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryChoice, setCategoryChoice] = useState("All");
-
+  console.log(showUser);
   const navigate = useNavigate();
   const products = useSelector((state) => state.cart.items);
 
@@ -34,6 +36,25 @@ const Navbar = ({ user, loading }) => {
     mutate(searchTerm);
   };
 
+  const handleLogout = async () => {
+    try {
+      const result = await api.post("/auth/logout");
+      if (result.status === 200) {
+        console.log("logout done ");
+        seShowUser(false);
+        navigate("/login");
+      } else {
+        console.log("logout but status to check");
+      }
+    } catch (error) {
+      console.log("error while logut , ", error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("here is it ", showUser);
+  }, [showUser]);
+
   return (
     <div className="w-full sticky top-0 z-50">
       <div className="w-full bg-amazon_blue text-white px-4 py-2 flex items-center gap-4 ">
@@ -43,6 +64,7 @@ const Navbar = ({ user, loading }) => {
             {/* Adjusted width */}
           </div>
         </Link>
+
         <div className="headerHover">
           <LocationOnIcon />
           <p className="text-sm text-lightText font-light flex flex-col">
@@ -50,6 +72,7 @@ const Navbar = ({ user, loading }) => {
             <span className="text-sm font-semibold mt-1 text-white">USA</span>
           </p>
         </div>
+
         <div className="h-10 rounded-md flex flex-grow relative">
           <span
             onClick={() => setShowAll(!showAll)}
@@ -79,6 +102,7 @@ const Navbar = ({ user, loading }) => {
               </ul>
             </div>
           )}
+
           <input
             className="h-full text-base text-amazon_blue flex-grow outline-none border-none px-2"
             type="text"
@@ -94,21 +118,46 @@ const Navbar = ({ user, loading }) => {
             <SearchIcon />
           </span>
         </div>
+
         <div className="flex flex-col items-start justify-center headerHover">
           {user ? (
-            <>
+            <div>
               <p className="text-xs text-lightText font-light">
-                Hello ,{user.name}{" "}
+                Hello, {user.name}
               </p>
-              <p className="text-sm font-semibold -mt-1 text-whiteText">
+              <p
+                onClick={() => seShowUser(!showUser)}
+                className="text-sm font-semibold -mt-1 text-whiteText"
+              >
                 Account & Lists{" "}
                 <span>
                   <ArrowDropDownOutlinedIcon />
                 </span>
               </p>
-            </>
+              {showUser && (
+                <ul
+                  className="absolute w-36 h-22 top-14 right-40 
+                overflow-x-hidden bg-white border-[1px] border-amazon_blue text-black
+                p-2 flex-col gap-1 z-50"
+                >
+                  <li
+                    className="text-sm tracking-wide font-titleFont border-b-[1px]
+                    border-b-transparent hover:border-b-amazon_blue cursor-pointer duration-200"
+                  >
+                    Settings
+                  </li>
+                  <li
+                    onClick={handleLogout}
+                    className="text-sm tracking-wide font-titleFont border-b-[1px]
+                    border-b-transparent hover:border-b-amazon_blue cursor-pointer duration-200"
+                  >
+                    Logout
+                  </li>
+                </ul>
+              )}
+            </div>
           ) : (
-            <>
+            <Link to="/login">
               <p className="text-xs text-lightText font-light">
                 Hello, Sign in
               </p>
@@ -118,18 +167,19 @@ const Navbar = ({ user, loading }) => {
                   <ArrowDropDownOutlinedIcon />
                 </span>
               </p>
-            </>
+            </Link>
           )}
         </div>
+
         <div className="flex flex-col items-start justify-center headerHover">
           <p className="text-xs text-lightText font-light">Returns</p>
           <p className="text-sm font-semibold -mt-1 text-whiteText">& Orders</p>
         </div>
+
         <Link to="/cart">
           <div className="flex flex-col items-start justify-center headerHover relative">
             <ShoppingCartIcon />
             <p className="text-xs font-semibold mt-3 text-whiteText">
-              Cart{" "}
               <span
                 className="absolute text-xs top-0 left-6 font-semibold p-1 h-4 bg-[#f3a847]
               text-amazon_blue rounded-full flex justify-center items-center"
