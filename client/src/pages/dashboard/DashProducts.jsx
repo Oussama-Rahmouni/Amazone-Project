@@ -37,8 +37,8 @@ const DashProducts = () => {
         size: 80,
       },
       {
-        accessorKey: "firstName",
-        header: "First Name",
+        accessorKey: "name",
+        header: "Product Name",
         muiEditTextFieldProps: {
           required: true,
           error: !!validationErrors?.firstName,

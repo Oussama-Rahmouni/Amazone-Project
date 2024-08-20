@@ -5,7 +5,7 @@ import { validationResult } from 'express-validator';
 // Get all users
 export const getAllUsers = async (req, res) => {
     try {
-        const [rows] = await db.execute('SELECT id, email, role, created_at FROM users');
+        const [rows] = await db.execute('SELECT * FROM users');
         res.status(200).json(rows);
     } catch (error) {
         handleError(error, req, res);
@@ -57,13 +57,13 @@ export const updateUserRole = async (req, res) => {
 // Delete a user
 export const deleteUser = async (req, res) => {
     try {
-        const { id } = req.params;
+        // const { id } = req.params;
 
-        const [result] = await db.execute('DELETE FROM users WHERE id = ?', [id]);
+        // const [result] = await db.execute('DELETE FROM users WHERE id = ?', [id]);
 
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'User not found' });
-        }
+        // if (result.affectedRows === 0) {
+        //     return res.status(404).json({ message: 'User not found' });
+        // }
 
         res.status(200).json({ message: 'User deleted successfully' });
     } catch (error) {

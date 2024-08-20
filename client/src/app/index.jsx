@@ -21,6 +21,7 @@ import ShippingView from "../pages/ShippingView";
 import AllProducts from "../pages/AllProducts";
 import ProductLayout from "../components/Layout/ProductLayout";
 import Cart from "../pages/Cart";
+import ErrorBoundary from "../context/ErrorBoundary";
 
 const router = createBrowserRouter([
   { path: "login", element: <Login /> },
@@ -59,7 +60,12 @@ const router = createBrowserRouter([
       { path: "orders", element: <DashOrders /> },
       { path: "shipping", element: <DashShipping /> },
       { path: "inbox", element: <DashInbox /> },
-      { path: "users", element: <DashUsers /> },
+
+      {
+        path: "users",
+        element: <DashUsers />,
+        errorElement: <ErrorBoundary />,
+      },
       { path: "calendar", element: <DashCalendar /> },
     ],
   },
