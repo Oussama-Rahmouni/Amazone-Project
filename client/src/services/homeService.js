@@ -18,7 +18,7 @@ export async function fetchIdsAndProducts() {
         
         // Parse the itemsIds which are stored as strings resembling arrays
         const requests = ids.map((item) =>
-            api.get(`/client/home-products?ids=${JSON.parse(item.itemsIds).join(',')}`)
+            api.get(`/client/home-products?ids=${JSON.parse(item.ids).join(',')}`)
         );
 
         const responses = await Promise.all(requests);

@@ -50,7 +50,8 @@ export const filterProducts = async (req, res) => {
 // Get all categories
 export const getCategories = async (req, res) => {
     try {
-        const [categories] = await db.query('SELECT * FROM categories');        res.json(categories);
+        const [categories] = await db.query('SELECT * FROM categories');        
+        res.json(categories);
     } catch (error) {
         handleError(error)
     }
@@ -58,7 +59,7 @@ export const getCategories = async (req, res) => {
 
 export const getItemIdsForHomePage = async (req, res) => {
     try {
-        const q = 'SELECT id, itemsIds FROM itemsIds';
+        const q = 'SELECT id, ids FROM itemsids';
         const [result] = await db.execute(q);
         if (result.length === 0) {
             return res.status(404).json({ message: 'No data found' });
@@ -66,6 +67,7 @@ export const getItemIdsForHomePage = async (req, res) => {
         res.status(200).json(result);
     } catch (error) {
         handleError(error)
+        console.log(er)
         
     }
 }
@@ -82,5 +84,6 @@ export const getHomProducts = async (req, res) => {
         res.json(products);
     } catch (error) {
         handleError(error)
+        console.log("err ", error)
     }
 };

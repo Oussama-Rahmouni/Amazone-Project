@@ -36,7 +36,7 @@ router.delete('/:id',
     removeCartItem
 );
 
-router.post('/shipping', addShippingAdress)
+router.post('/shipping', authenticate, addShippingAdress)
 router.post('/add', authenticate, addItemsToCart)
 
 export default router;

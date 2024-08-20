@@ -45,12 +45,12 @@ export const useAddToCart = () => {
 
 
 const onSuccess = async (data) => {
-    console.log("here")
-    navigate("/");
+    console.log("here",data)
+    // navigate("/");
   };
   
-  const onError = async (data) => {
-    alert("something worng happend");
+  const onError = async (error) => {
+    console.log("something worng happend", error);
   };
 
   const addShippingAddress = async (addressData) => {
@@ -62,6 +62,7 @@ const onSuccess = async (data) => {
 
 export const useAddShippingAddress = () =>{
     console.log("the use state")
+    
     return useMutation(addShippingAddress,{
         onSuccess,
         onError

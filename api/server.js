@@ -13,7 +13,7 @@ import bodyParser from 'body-parser';
 import multer from 'multer';
 import pool from './config/db.js'
 import router from './routes/routeCenter.js'
-
+import bcrypt from 'bcrypt' 
 // Load environment variables from .env file
 dotenv.config();
 
@@ -59,6 +59,8 @@ pool.getConnection()
     });
 
 app.use('/api', router);
+
+// bcrypt.hash("123456",10).then((data)=>console.log(data))
 
 // Start the server
 app.listen(process.env.PORT, () => {

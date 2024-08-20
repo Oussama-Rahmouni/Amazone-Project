@@ -87,11 +87,18 @@ export const removeCartItem = async (req, res) => {
 
 export const addShippingAdress = async (req, res) =>{
     try {
-        console.log("here is the request ", req.body)
-        const user_id = req.user
-        const q = "INSERT INTO orders VALUES (?,?, ?, ?, ?"
+        console.log(req.user)
+        const {id} = req.user
+        const {country, name, phoneNumber, street, addressLine2, city, state, zip} = req.body;
+        console.log("haw l body", req.body)
+        console.log("data ", country, name, phoneNumber, street, addressLine2, city, state, zip)
+        const sql = "INSERT INTO shipping_address (user_id, country, name, phone_number, street, address_line2, city, state, zip) VALUES (?,?,?,?,?,?,?,?,?)"
+        const result = await db.execute(sql, [id,country, name, phoneNumber, street, addressLine2, city, state, zip])
+        console.log("hay result ", result)
+        res.status(201).json({message:"adress addedd succefully", redirect:"/"})
     } catch (error) {
-        handleError(error)
+        // handleError(error)
+        console.log("haho hna ", error)
     }
 } 
 

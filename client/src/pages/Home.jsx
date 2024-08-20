@@ -41,6 +41,11 @@ const Home = () => {
     onSettled: () => setFetchProducts(false),
   });
 
+  console.log("first ", categories);
+  console.log("products ", products);
+  console.log("errror cat  ", errorsCategories);
+  console.log("products error", errorsProducts);
+
   // Conditional rendering for loading and error states
   if (loadingProducts || loadingCategories) {
     return <div>Loading...</div>;
