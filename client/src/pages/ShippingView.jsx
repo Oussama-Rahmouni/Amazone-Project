@@ -2,18 +2,58 @@ import React from "react";
 import "./styles/dashboard.css"; // Importing the CSS file for styling
 import { useForm } from "react-hook-form";
 import { useAddShippingAddress } from "../services/cartService";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 const ShippingView = () => {
+  const stripe = useStripe();
+  const elements = useElements();
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
 
-  const { mutateAsync } = useAddShippingAddress();
+  const { mutateAsync: addShippingAddress } = useAddShippingAddress();
 
   const onSubmit = async (data) => {
-    mutateAsync(data);
+    if (!stripe || !elements) {
+      console.error("Stripe or Elements is not initialized");
+      return;
+    }
+
+    console.log("here is the stripe ,", stripe);
+    console.log("here is the element ,", elements);
+    console.log("here is the card element ,", CardElement);
+    const card = elements.getElement(CardElement);
+    console.log("here is the car d", card);
+
+    if (!card) {
+      console.error("CardElement is not found");
+      return;
+    }
+
+    try {
+      const response = await addShippingAddress(data);
+      console.log("hay rsesponse here ", response);
+      // Proceed with payment logic if needed
+      const clientSecret = response.clientSecret; // Example
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card,
+          billing_details: {
+            name: "Customer Name",
+          },
+        },
+      });
+
+      if (result.error) {
+        console.error(result.error.message);
+      } else if (result.paymentIntent.status === "succeeded") {
+        console.log("Payment successful!");
+      }
+    } catch (error) {
+      console.error("An error occurred", error);
+    }
   };
 
   return (

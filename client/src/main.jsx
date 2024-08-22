@@ -14,6 +14,7 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store.js";
 import { PersistGate } from "redux-persist/integration/react";
 import ErrorBoundary from "./context/ErrorBoundary.jsx";
+import { AuthProvider } from "./context/AuthContext .jsx";
 
 const queryClient = new QueryClient();
 
@@ -25,9 +26,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <PrimeReactProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <PersistGate loading={"loading"} persistor={persistor}>
-                <ErrorBoundary>
-                  <App />
-                </ErrorBoundary>
+                <AuthProvider>
+                  <ErrorBoundary>
+                    <App />
+                  </ErrorBoundary>
+                </AuthProvider>
               </PersistGate>
             </LocalizationProvider>
           </PrimeReactProvider>

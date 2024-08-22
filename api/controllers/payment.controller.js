@@ -1,0 +1,29 @@
+import Stripe from 'stripe'
+const stripe = Stripe(process.env.STRIPE_KEY); 
+
+
+export const processPayment = async (req, res) =>{
+    const products = req.body
+    let total = 0;
+    for (let x in products)
+    {
+        total += products[x].price * products[x].quantity
+    }
+    const amountInCents = total * 100;
+
+    try {
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount:amountInCents, // Amount in cents
+            currency: 'usd',
+            payment_method_types: ['card'],
+        });
+        res.status(200).send({
+            clientSecret: paymentIntent.client_secret,
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+        console.log("issue in getting payment link", error)
+    }
+    
+}
+

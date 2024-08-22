@@ -22,6 +22,10 @@ import AllProducts from "../pages/AllProducts";
 import ProductLayout from "../components/Layout/ProductLayout";
 import Cart from "../pages/Cart";
 import ErrorBoundary from "../context/ErrorBoundary";
+import PrivateRoute from "./PrivateRoute";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { stripePromise } from "../services/stripe/stripe";
 
 const router = createBrowserRouter([
   { path: "login", element: <Login /> },
@@ -46,19 +50,32 @@ const router = createBrowserRouter([
       { path: "checkout", element: <Checkout /> },
       { path: "order", element: <OrderSummary /> },
       { path: "profile", element: <Profile /> },
-      { path: "shipping", element: <ShippingView /> },
+      {
+        path: "shipping",
+        element: (
+          <PrivateRoute>
+            <Elements stripe={stripePromise}>
+              <ShippingView />
+            </Elements>
+          </PrivateRoute>
+        ),
+      }, // Protected route },
     ],
   },
 
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute requiredRole="admin">
+        <DashboardLayout />
+      </PrivateRoute>
+    ), // Protected route with admin role check
     children: [
       { index: true, element: <DashboardAdmin /> },
       { path: "products", element: <DashProducts /> },
       { path: "sales", element: <DashSales /> },
       { path: "orders", element: <DashOrders /> },
-      { path: "shipping", element: <DashShipping /> },
+
       { path: "inbox", element: <DashInbox /> },
 
       {

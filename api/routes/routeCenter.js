@@ -6,6 +6,7 @@ import cartRoutes from './cart.routes.js';
 import orderRoutes from './order.routes.js';
 import clientRoutes from './client.routes.js';
 import verify from './verify.js'
+import paymentRoute from './payment.routes.js'
 const router = express.Router();
 
 router.use('/auth', authRoutes);
@@ -15,6 +16,7 @@ router.use('/cart', cartRoutes);
 router.use('/order', orderRoutes);
 router.use('/client', clientRoutes);
 router.use('/verify', verify);
+router.use('/payment', paymentRoute)
 
 
 export default router;

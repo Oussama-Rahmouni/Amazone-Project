@@ -1,8 +1,25 @@
 import api from './apiConfig';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveIntendedRoute } from '../redux/actions/navigationActions';
+
+
+export const useAddShippingAddress = () => {
+   
+    const addShippingAddress = async (addressData) => {
+      try {
+        const response = await api.post("/cart/shipping", addressData);
+        return response.data;
+      } catch (error) {
+        throw new Error('Failed to add shipping address');
+      }
+    };
+  
+    return useMutation(addShippingAddress)
+    }
+
+
 
 const addToCart = async ({ products, user, loading, navigate, dispatch }) => {
     // If loading, you might want to show a loading state or simply return
@@ -25,6 +42,7 @@ export const useAddToCart = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+
     return useMutation(({ products, user, loading }) => (
         addToCart({ products, user,loading,  navigate, dispatch  })), 
         {
@@ -44,27 +62,3 @@ export const useAddToCart = () => {
 }
 
 
-const onSuccess = async (data) => {
-    console.log("here",data)
-    // navigate("/");
-  };
-  
-  const onError = async (error) => {
-    console.log("something worng happend", error);
-  };
-
-  const addShippingAddress = async (addressData) => {
-    console.log("hay l'adressù ", addressData)
-    const response = await api.post("/cart/shipping", addressData);
-    console.log("hay response ", response)
-    return response.data;
-  };
-
-export const useAddShippingAddress = () =>{
-    console.log("the use state")
-    
-    return useMutation(addShippingAddress,{
-        onSuccess,
-        onError
-    })
-}

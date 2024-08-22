@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useAddToCart } from "../services/cartService";
 import { useOutletContext } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext ";
 
 const Cart = () => {
-  const { user, loading } = useOutletContext();
   const [totalPrice, setTotalPrice] = useState(0);
   const products = useSelector((state) => state.cart.items);
+  const { user, loading } = useAuthContext();
+  console.log("this user is comming here ", user);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const dispatch = useDispatch();
   const { mutateAsync } = useAddToCart();

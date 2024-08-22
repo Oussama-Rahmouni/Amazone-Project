@@ -16,7 +16,7 @@ const Navbar = ({ user, loading }) => {
   const [showUser, seShowUser] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryChoice, setCategoryChoice] = useState("All");
-  console.log(showUser);
+
   const navigate = useNavigate();
   const products = useSelector((state) => state.cart.items);
 
@@ -51,9 +51,7 @@ const Navbar = ({ user, loading }) => {
     }
   };
 
-  useEffect(() => {
-    console.log("here is it ", showUser);
-  }, [showUser]);
+  useEffect(() => {}, [showUser]);
 
   return (
     <div className="w-full sticky top-0 z-50">
