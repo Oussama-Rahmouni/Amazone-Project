@@ -3,13 +3,15 @@ const stripe = Stripe(process.env.STRIPE_KEY);
 
 
 export const processPayment = async (req, res) =>{
-    const products = req.body
+    const {products} = req.body
+    console.log("haw lproducts,", req.body)
     let total = 0;
     for (let x in products)
     {
         total += products[x].price * products[x].quantity
     }
     const amountInCents = total * 100;
+    console.log("total ", amountInCents)
 
     try {
         const paymentIntent = await stripe.paymentIntents.create({

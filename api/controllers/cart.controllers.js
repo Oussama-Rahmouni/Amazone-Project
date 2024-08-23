@@ -91,7 +91,7 @@ export const addShippingAdress = async (req, res) =>{
         const {country, name, phoneNumber, street, addressLine2, city, state, zip} = req.body;
         const sql = "INSERT INTO shipping_address (user_id, country, name, phone_number, street, address_line2, city, state, zip) VALUES (?,?,?,?,?,?,?,?,?)"
         const result = await db.execute(sql, [id,country, name, phoneNumber, street, addressLine2, city, state, zip])
-        res.status(201).json({message:"adress addedd succefully", redirect:"/"})
+        res.status(201).json({message:"adress addedd succefully", redirect:"/checkout"})
     } catch (error) {
         // handleError(error)
         console.log("haho hna ", error)

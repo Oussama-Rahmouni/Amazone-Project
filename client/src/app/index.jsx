@@ -46,20 +46,30 @@ const router = createBrowserRouter([
     element: <HomeLayout />,
     children: [
       { index: true, element: <Home /> },
-      { path: "cart", element: <Cart /> },
-      { path: "checkout", element: <Checkout /> },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "checkout",
+        element: (
+          <PrivateRoute>
+            <Elements stripe={stripePromise}>
+              <Checkout />
+            </Elements>
+          </PrivateRoute>
+        ),
+      },
       { path: "order", element: <OrderSummary /> },
       { path: "profile", element: <Profile /> },
       {
         path: "shipping",
         element: (
           <PrivateRoute>
-            <Elements stripe={stripePromise}>
-              <ShippingView />
-            </Elements>
+            <ShippingView />
           </PrivateRoute>
         ),
-      }, // Protected route },
+      },
     ],
   },
 
