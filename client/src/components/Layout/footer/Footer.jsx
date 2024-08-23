@@ -1,28 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GoUp from "./GoUp";
 import logo from "../../../assets/assets/logo.png";
 import flag from "../../../assets/assets/flag.png";
+import { useAuthContext } from "../../../context/AuthContext ";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const { user, loading } = useAuthContext(); // Access user and loading
+  if (loading) {
+    return <div>Loading...</div>; // Show loading state
+  }
+  useEffect(() => {}, [user]);
   return (
     <div className="font-titleFont">
       <div className="w-full bg-white py-6">
         <div className="w-full border-t-[1px] border-b-[1px] py-8">
-          <div className="w-64 mx-auto text-center">
-            <p className="text-sm">See Personlized recommendations</p>
-            <button
-              className="w-full  bg-yellow-400 rounded-md py-1 font-semibold 
+          {user ? (
+            <div className="w-64 mx-auto text-center">
+              <p className="text-sm">See Personlized recommendations</p>
+              <Link>
+                <button
+                  className="w-full  bg-yellow-400 rounded-md py-1 font-semibold 
             cursor-pointer hover:bg-yellow-500 active:bg-yellow-700 "
-            >
-              Sign In
-            </button>
-            <p className="text-xs mt-1">
-              New Customer ?{" "}
-              <span className="text-blue-600 ml-1 cursor-pointer">
-                Start here
-              </span>
-            </p>
-          </div>
+                >
+                  Go To Account
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <div className="w-64 mx-auto text-center">
+              <p className="text-sm">See Personlized recommendations</p>
+              <Link to="/login">
+                <button
+                  className="w-full  bg-yellow-400 rounded-md py-1 font-semibold 
+            cursor-pointer hover:bg-yellow-500 active:bg-yellow-700 "
+                >
+                  Sign In
+                </button>
+              </Link>
+              <p className="text-xs mt-1">
+                New Customer ?{" "}
+                <Link to="/register">
+                  <span className="text-blue-600 ml-1 cursor-pointer">
+                    Start here
+                  </span>
+                </Link>
+              </p>
+            </div>
+          )}
         </div>
       </div>
       <GoUp />

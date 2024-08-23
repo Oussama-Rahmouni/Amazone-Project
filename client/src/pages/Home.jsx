@@ -72,14 +72,14 @@ const Home = () => {
       <div className="-translate-y-1/2">
         <ListCards thirdProductSet={thirdProductSet} />
       </div>
-      <div className="flex justify-center items-center flex-wrap gap-10 mt-10 relative top-[-180px] -translate-y-1/8 border border-blue-600">
+      <div className="flex justify-center items-center flex-wrap gap-10 mt-10 relative top-[-180px] -translate-y-1/8 ">
         <ProductsCards secondProductSet={secondProductSet} />
       </div>
-      <div className="px-8 py-2  ">
+      <div className="px-8 py-2 relative top-[-180px] -translate-y-1/8 ">
         {/* <Card  /> */}
         <FourthView fourthProductSet={fourthProductSet} />
       </div>
-      <div className="px-8 py-2 ">
+      <div className="px-8 py-2 relative top-[-180px] -translate-y-1/8">
         {/* <Card  /> */}
         <FourthView fourthProductSet={fifthProductSet} />
       </div>

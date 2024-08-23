@@ -31,21 +31,22 @@ const router = createBrowserRouter([
   { path: "login", element: <Login /> },
   { path: "register", element: <Register /> },
 
-  {
-    path: "/",
-    element: <ProductLayout />,
-    children: [
-      { path: "all-products", element: <AllProducts /> },
-      { path: "category/:name", element: <Products /> }, //missing sidebar design
-      { path: "product/:name", element: <ProductDetail /> }, // missing the design and the logic
-    ],
-  },
+  // {
+  //   path: "/",
+  //   element: <ProductLayout />,
+  //   children: [
+  //     missing the design and the logic
+  //   ],
+  // },
 
   {
     path: "/",
     element: <HomeLayout />,
     children: [
       { index: true, element: <Home /> },
+      { path: "all-products", element: <AllProducts /> },
+      { path: "category/:name", element: <Products /> }, //missing sidebar design
+      { path: "product/:name", element: <ProductDetail /> }, //
       {
         path: "cart",
         element: <Cart />,

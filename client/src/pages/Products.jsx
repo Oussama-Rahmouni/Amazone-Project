@@ -29,23 +29,26 @@ const Products = () => {
           {data?.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col sm:flex-row items-center bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
+              className="flex flex-col sm:flex-row items-stretch bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
+              style={{ height: "350px" }} // Set a fixed height
             >
-              <div className="w-full sm:w-1/3">
+              <div className="w-full sm:w-1/3 h-full">
                 <img
                   className="w-full h-full object-cover"
                   src={item.image_url}
                   alt={item.name}
                 />
               </div>
-              <div className="w-full sm:w-2/3 p-8">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                  {item.name}
-                </h2>
-                <p className="text-xl text-indigo-600 font-medium mb-4">
-                  ${item.price}
-                </p>
-                <p className="text-gray-700">{item.description}</p>
+              <div className="w-full sm:w-2/3 p-8 flex flex-col justify-between">
+                <div>
+                  <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                    {item.name}
+                  </h2>
+                  <p className="text-xl text-indigo-600 font-medium mb-4">
+                    ${item.price}
+                  </p>
+                  <p className="text-gray-700">{item.description}</p>
+                </div>
               </div>
             </div>
           ))}
