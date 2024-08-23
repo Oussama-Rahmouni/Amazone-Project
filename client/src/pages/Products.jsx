@@ -1,39 +1,56 @@
 import React from "react";
+import ProductsSidebar from "../components/common/ProductsSidebar";
 import "./styles/main.css";
-import ProductCards from "../components/common/ProductCards";
-import AllProductsCard from "../components/common/AllProductsCard";
 import { useQuery } from "react-query";
 import { getCategoryProducts } from "../services/productService";
 import { useParams } from "react-router-dom";
 
 const Products = () => {
   const { name } = useParams();
-  const { loading, erros, data } = useQuery({
-    queryKey: ["getCategoryProducts"],
-    queryFn: () => {
-      return getCategoryProducts(name);
-    },
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["getCategoryProducts", name],
+    queryFn: () => getCategoryProducts(name),
   });
 
-  console.log("our data ", data);
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading products.</p>;
 
   return (
-    <div>
-      {data?.map((item) => (
-        <div>
-          <div>
-            <img
-              className="w-52 h-64 object-contain"
-              src={item.image_url}
-              alt=""
-            />
-          </div>
-          <div>
-            <h2>{item.name}</h2>
-            <p>{item.price}</p>
-          </div>
+    <div className="flex max-w-screen-xl mx-auto p-6">
+      {/* Sidebar */}
+      <ProductsSidebar />
+
+      {/* Main Content */}
+      <div className="flex-grow p-6">
+        <h1 className="text-4xl font-bold text-gray-900 mb-12">
+          {name} Products
+        </h1>
+        <div className="space-y-10">
+          {data?.map((item) => (
+            <div
+              key={item.id}
+              className="flex flex-col sm:flex-row items-center bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="w-full sm:w-1/3">
+                <img
+                  className="w-full h-full object-cover"
+                  src={item.image_url}
+                  alt={item.name}
+                />
+              </div>
+              <div className="w-full sm:w-2/3 p-8">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                  {item.name}
+                </h2>
+                <p className="text-xl text-indigo-600 font-medium mb-4">
+                  ${item.price}
+                </p>
+                <p className="text-gray-700">{item.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };

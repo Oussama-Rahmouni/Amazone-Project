@@ -3,18 +3,15 @@ import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./footer/Footer";
 import { Outlet } from "react-router-dom";
-import TopHeader from "../common/TopHeader";
 import useAuth from "../../hooks/useAuth";
 
 const HomeLayout = () => {
-  const { user, loading } = useAuth(); // Destructure the user and loading state
+  const { user, loading } = useAuth();
   return (
     <div className="font-bodyFont">
-      <Navbar user={user} loading={loading} />{" "}
-      {/* Pass user and loading to Navbar */}
+      <Navbar user={user} loading={loading} />
       <div className="relative z-0">
-        <Outlet context={{ user, loading }} />{" "}
-        {/* Pass user and loading to Outlet via context */}
+        <Outlet />
       </div>
       <Footer />
     </div>

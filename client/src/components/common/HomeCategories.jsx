@@ -1,10 +1,8 @@
-// src/components/Card.js
 import React from "react";
 import "../styles/homeCategories.css";
 import { Link } from "react-router-dom";
 
 const HomeCategories = ({ categories }) => {
-  // console.log("here ", categories);
   return categories?.map((category, index) => {
     if (index < 8)
       return (
