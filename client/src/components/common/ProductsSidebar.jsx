@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductsSidebar = () => {
   return (
-    <div className="products-sidebar-container">
+    <div className="sticky top-[120px] z-50  flex-start">
       <div className="first-sidebar-fiter">
         <h3>First Filter</h3>
 

@@ -16,9 +16,11 @@ const Products = () => {
   if (error) return <p>Error loading products.</p>;
 
   return (
-    <div className="flex max-w-screen-xl mx-auto p-6">
+    <div className="flex  mx-auto p-6 bg-[#E3E6E6]">
       {/* Sidebar */}
-      <ProductsSidebar />
+      <div className="border border-blue-500 w-96  sticky ">
+        <ProductsSidebar />
+      </div>
 
       {/* Main Content */}
       <div className="flex-grow p-6">

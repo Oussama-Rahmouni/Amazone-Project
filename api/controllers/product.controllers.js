@@ -46,12 +46,19 @@ export const createProduct = async (req, res) => {
 // Get all products
 export const getAllProducts = async (req, res) => {
     try {
-        const [rows] = await db.execute('SELECT * FROM products');
+        // Modified query to join products with categories
+        const [rows] = await db.execute(`
+            SELECT p.*, c.name as cat_name
+            FROM products p
+            JOIN categories c ON p.category_id = c.id
+        `);
+        
         res.status(200).json(rows);
     } catch (error) {
         handleError(error, req, res);
     }
 };
+
 
 // Get a single product by ID
 export const getProductById = async (req, res) => {
