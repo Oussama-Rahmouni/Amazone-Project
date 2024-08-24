@@ -32,6 +32,9 @@ const columns = [
   columnHelper.accessor("cat_name", {
     header: "Category",
   }),
+  columnHelper.accessor("image_url", {
+    header: "Image URL",
+  }),
 ];
 
 const csvConfig = mkConfig({

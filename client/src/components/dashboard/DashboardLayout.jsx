@@ -1,18 +1,16 @@
 import React from "react";
-import DasdhboardSideBar from "./DashboardSideBar";
+import DashboardSideBar from "./DashboardSideBar";
 import { Outlet } from "react-router-dom";
-import "../styles/dashboardLayout.css";
-import DasbhoardNavbar from "./DasbhoardNavbar";
-
+import DashboardNavbar from "./DasbhoardNavbar";
 const DashboardLayout = () => {
   return (
-    <div className="dashboardLayout">
-      <div className="sidb">
-        <DasdhboardSideBar />
+    <div className="flex h-screen w-full">
+      <div className="sticky top-0">
+        <DashboardSideBar />
       </div>
-      <div className="maaain">
-        <DasbhoardNavbar className="nav" />
-        <div className="outlet">
+      <div className="flex-1 flex flex-col">
+        <DashboardNavbar className="sticky top-0 z-10" />
+        <div className="flex-grow m-1 p-2 overflow-y-auto">
           <Outlet />
         </div>
       </div>
