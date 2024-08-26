@@ -4,14 +4,13 @@ const stripe = Stripe(process.env.STRIPE_KEY);
 
 export const processPayment = async (req, res) =>{
     const {products} = req.body
-    console.log("haw lproducts,", req.body)
     let total = 0;
     for (let x in products)
     {
         total += products[x].price * products[x].quantity
     }
     const amountInCents = total * 100;
-    console.log("total ", amountInCents)
+
 
     try {
         const paymentIntent = await stripe.paymentIntents.create({
@@ -29,3 +28,11 @@ export const processPayment = async (req, res) =>{
     
 }
 
+export const saveRecordToDB = async (req, res)=>{
+    try {
+        console.log("req body ", req.body)
+    } catch (error) {
+        console.error("someerror here ", error)
+        res.Status(500).json(error)
+    }
+}

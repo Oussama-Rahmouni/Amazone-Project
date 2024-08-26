@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { usePayStripe } from "../services/stripe/payment.js";
+import api from "../services/apiConfig.js";
+import { useNavigate } from "react-router-dom";
+import { clearCart } from "../redux/slices/cartSlice.js";
 
 const Checkout = ({ totalAmount }) => {
   const products = useSelector((state) => state.cart.items);
@@ -46,6 +49,9 @@ const Checkout = ({ totalAmount }) => {
       if (result.error) {
         console.error(result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
+        const saveToDB = await api.post("/payment/addRecord", result);
+        dispatch(clearCart());
+        navigate("/");
         console.log("Payment successful!");
       }
     } catch (error) {
