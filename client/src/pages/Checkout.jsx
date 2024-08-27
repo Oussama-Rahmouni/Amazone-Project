@@ -46,12 +46,13 @@ const Checkout = ({ totalAmount }) => {
         },
       });
 
+      const saveToDB = await api.post("/payment/addRecord", result);
+      dispatch(clearCart());
+      navigate("/");
+
       if (result.error) {
         console.error(result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
-        const saveToDB = await api.post("/payment/addRecord", result);
-        dispatch(clearCart());
-        navigate("/");
         console.log("Payment successful!");
       }
     } catch (error) {
